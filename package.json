@@ -1,0 +1,10 @@
+{
+  "name": "visa_calculator",
+  "version": "1.0.0",
+  "description": "\"New visa calculator to facilitate knowing how long you can stay in a country\"",
+  "main": "index.js",
+  "repository": "git@github.com:codersquirrelbln/visa_calculator.git",
+  "author": "Elisa <codersquirrelbln@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
