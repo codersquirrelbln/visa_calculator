@@ -1,4 +1,35 @@
-.wrapper {
+
+body {
+  text-align: center;
+  background: cornflowerblue;
+}
+
+img {
+  width: 50px;
+  border-radius: 50px;
+}
+
+input {
+  border: 2px solid whitesmoke;
+  border-radius: 20px;
+  padding: 12px 10px;
+  text-align: center;
+  width: 250px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align: center;
+  cursor: pointer;
+  background: coral;
+  color: whitesmoke;}
+
+
+
+
+/*.wrapper {
 
 }
 
@@ -10,4 +41,6 @@
 .form_group {
 
 
-}
+}*/
+
+/*@import '../node_modules/flatpickr/dist/flatpickr.min.css';*/
