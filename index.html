@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Visa-Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Visa Calculator">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class='d-flex pb-3 align-items-baseline justify-content-between'>
+      <h1>Welcome to my Visa Calculator</h1>
+      <p>Explanation on how this works, and we are not responsible for any false calculations</p>
+      <!-- <h2 style="visibility: hidden;">BLANK</h2> -->
+      <div>
+        <form class="form">
+        <!--
+        <form class="form" action="/my-handling-form-page" method="post">
+         -->  <div>
+            <label for="Time Period">Time Period in days:</label>
+            <input type="text" id="timePeriod" name="time_period">
+          </div>
+          <div>
+            <label for="days">Maximum stay in days:</label>
+            <input type="text" id="maxDays" name="max_days">
+          </div>
+          <div>
+            <label for="first Entry">First date of Entry if not the same as travel date:</label>
+            <input id="firstEntry" name="first_entry"></input>
+          </div>
+           <div>
+            <label for="Entry">Entry Date of Travel:</label>
+            <input id="travelEntry" name="travel_entry"></input>
+          </div>
+           <div>
+            <label for="Exit">Exit date of travel:</label>
+            <input id="TravelExit" name="travel_exit"></input>
+          </div>
+          <button class="submit-btn btn btn-primary">Submit</button>
+        </form>
+     </div>
+    </div>
+    <!-- put in anker tags for more info, redirect to official pages -->
+  </div>
+  <script src="javascript/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>
