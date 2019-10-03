@@ -5,7 +5,6 @@ const firstEntryDate = document.querySelector('#firstEntry');
 const travelEntry = document.querySelector('#travelEntry');
 const travelExit = document.querySelector('#travelExit');
 const submitBtn = document.querySelector('.submit-btn');
-// use eventlistener to activate fields
 
 // timeFrame.addEventListener('focus', event => {
 //   event.target.className = 'highlight';
@@ -28,6 +27,12 @@ submitBtn.addEventListener('click', event => {
   let timeFrameValue = timeFrame.value;
   let maxDaysValue = maxDays.value;
   console.log(`${timeFrameValue} minus ${maxDaysValue} equals ${timeFrameValue - maxDaysValue}`);
+
+  // calculate last date exit by using firstDayEntry + timeFrame
+  // we need to use a calendar function here, where can we find it?
+
 })
+
+
 
 
