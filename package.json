@@ -6,5 +6,8 @@
   "repository": "git@github.com:codersquirrelbln/visa_calculator.git",
   "author": "Elisa <codersquirrelbln@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "flatpickr": "^4.6.3"
+  }
 }
