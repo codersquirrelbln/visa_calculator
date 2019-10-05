@@ -6,56 +6,86 @@
   <meta name="description" content="Visa Calculator">
 
   <link rel="stylesheet" href="stylesheets/style.css">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 </head>
 
-
 <body>
-  <div class="container">
-    <div class='d-flex pb-3 align-items-baseline justify-content-between'>
-      <h1>Welcome to my Visa Calculator</h1>
-      <p>Explanation on how this works, and we are not responsible for any false calculations</p>
-      <!-- <h2 style="visibility: hidden;">BLANK</h2> -->
-    </div>
+  <div class="container d-flex pb-3 align-items-baseline justify-content-between">
+    <h1>Welcome to my Visa Calculator</h1>
+    <p><!-- Explanation on how this works, and we are not responsible for any false calculations --></p>
 
-<!-- time period f.ex. 180 days -->
+    <!-- time period f.ex. 180 days -->
     <div>
       <input type="text" id="timePeriod" placeholder="Insert Time Frame"  name="time_period" data-input>
-      </div>
+    </div>
 
-<!-- max days allowed in country -->
-      <div>
-          <input type="text" id="maxDays" name="max_days" placeholder="Insert Maximum days of stay allowed" data-input>
-        </div>
+    <!-- max days allowed in country -->
+    <div>
+      <input type="text" id="maxDays" name="max_days" placeholder="Insert Maximum days of stay allowed" data-input>
+    </div>
 
-        <!-- date range of trip -->
-
+    <!-- dates of of trip -->
     <h2>Your Stay</h2>
-    <input type="text" id="rangeDate" placeholder="Please select Date Range" data-input>
+    <!-- entry date -->
+    <div class="datepicker" id="entryDate">
+        <input type="text" placeholder="Select Date.." data-input>
+        <a class="input-button" title="toggle" data-toggle>
+            <i class="icon-calendar"></i>
+        </a>
+        <a class="input-button" title="clear" data-clear>
+            <i class="icon-close"></i>
+        </a>
+        <button class="clear_button" title="clear" data-clear>
+        Clear
+        </button>
+         <button class="submit-btn btn btn-primary">Submit</button>
+    </div>
 
- <button class="submit-btn btn btn-primary">Submit</button>
+    <!-- exit date -->
+    <div class="datepicker" id="exitDate">
+        <input type="text" placeholder="Select Date.." data-input>
+        <a class="input-button" title="toggle" data-toggle>
+            <i class="icon-calendar"></i>
+        </a>
+        <a class="input-button" title="clear" data-clear>
+            <i class="icon-close"></i>
+        </a>
+        <button class="clear_button" title="clear" data-clear>
+        Clear
+        </button>
 
+    </div>
 
-  <!-- bootstrap  -->
- <!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+    <div>
+      <!-- scripts -->
+      <!-- bootstrap don't uncomment, it will break the code for some reason -->
+       <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
 
+       <!-- jQuery -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <!-- my js f ile -->
+      <script src="javascript/index.js"></script>
 
- <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<!-- my js file -->
-   <script src="javascript/index.js"></script>
+      <!-- external js files -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-  <script>
-
-$("#rangeDate").flatpickr({
-    mode: 'range',
-    dateFormat: "Y-m-d"
-});
-  </script>
+      <!-- flatpickr -->
+      <script>
+        $(".datepicker").flatpickr({
+            allowInput: true,
+            wrap: true,
+            altInput: true,
+            // humanfriendly date
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d"
+        });
+      </script>
+    </div>
+  </div>
 </body>
+</html>
+
+
