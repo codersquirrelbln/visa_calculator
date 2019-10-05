@@ -1,4 +1,11 @@
 {
+
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "flatpickr": "^4.6.3",
+    "jquery": "^3.4.1",
+    "webpacker": "^4.6.0"
+
   "name": "visa_calculator",
   "version": "1.0.0",
   "description": "\"New visa calculator to facilitate knowing how long you can stay in a country\"",
@@ -7,7 +14,6 @@
   "author": "Elisa <codersquirrelbln@gmail.com>",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "flatpickr": "^4.6.3"
+
   }
 }

@@ -1,0 +1,82 @@
+ <!-- <div>
+      <p>Date From :
+    <input type="text" id="TextBox1" />
+</p>
+<p>Date To :
+    <input type="text" id="TextBox2" />
+</p>
+<p>Difference :
+    <input type="text" id="TextBox3" />
+</p>
+
+
+    </div> -->
+    <button class="submit-btn btn btn-primary">Submit</button>
+
+    <div>
+      <!-- scripts -->
+      <!-- bootstrap -->
+    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
+
+       <!-- jQuery -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <!-- my js f ile -->
+      <script src="javascript/index.js"></script>
+
+      <!-- external js files -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+      <!-- flatpickr -->
+
+      <!-- <script>
+        $("#TextBox1").flatpickr({
+            minDate: 0,
+            maxDate: '+1Y+6M',
+            onSelect: function (dateStr) {
+                let min = $(this).flatpickr('getDate'); // Get selected date
+                $("#TextBox2").flatpickr('option', 'minDate', min || '0'); // Set other min, default to today
+            }
+        });
+
+        $("#TextBox2").flatpickr({
+            minDate: '0',
+            maxDate: '+1Y+6M',
+            onSelect: function (dateStr) {
+                let max = $(this).flatpickr('getDate'); // Get selected date
+                $('#flatpickr').flatpickr('option', 'maxDate', max || '+1Y+6M'); // Set other max, default to +18 months
+                let start = $("#TextBox1").flatpickr("getDate");
+                let end = $("#TextBox2").flatpickr("getDate");
+                let days = (end - start) / (1000 * 60 * 60 * 24);
+                $("#TextBox3").val(days);
+            }
+        });
+
+
+      </script> -->
+      <script>
+        $(".datepicker").flatpickr({
+            allowInput: true,
+            wrap: true,
+            altInput: true,
+            humanfriendly date
+            altFormat: "F j, Y",
+            dateFormat: "Y-m-d"
+        });
+        // {
+              //   mode: "range",
+              //   minDate: "today",
+              //   dateFormat: 'n/j/Y',
+              //   onClose: function(selectedDates, dateStr, instance) {
+              //     let daysInRange = document.getElementsByClassName('inRange');
+              //     let daysLengthTotal = daysInRange.length + 1;
+              //     console.log(daysLengthTotal);
+              //   }
+              // });
+      </script>
+    </div>
+  </div>
+</body>
+</html>
+
+
