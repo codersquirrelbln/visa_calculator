@@ -29,7 +29,8 @@
     <h2>Your Stay</h2>
     <!-- entry date -->
     <div class="datepicker">
-        <input type="text" placeholder="Select Date.." data-input id="entryDate">
+        <input type="text" placeholder="Entry Date.."  id="entryDate">
+        <!-- why does data-input add another input field? -->
         <a class="input-button" title="toggle" data-toggle>
             <i class="icon-calendar"></i>
         </a>
@@ -39,12 +40,11 @@
         <button class="clear_button" title="clear" data-clear>
         Clear
         </button>
-         <button class="submit-btn btn btn-primary">Submit</button>
     </div>
 
     <!-- exit date -->
     <div class="datepicker" >
-        <input type="text" placeholder="Select Date.." data-input id="exitDate">
+        <input type="text" placeholder="Exit date.." data-input id="exitDate">
         <a class="input-button" title="toggle" data-toggle>
             <i class="icon-calendar"></i>
         </a>
@@ -57,22 +57,12 @@
 
     </div>
 
+        <button class="submit-btn btn btn-primary">Submit</button>
     <div>
-      <!-- scripts -->
-      <!-- bootstrap don't uncomment, it will break the code for some reason -->
-       <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
 
-       <!-- jQuery -->
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
- -->
-
+    <!-- scripts -->
       <!-- external js files -->
-    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-
-
 
       <!-- my js f ile -->
       <script src="javascript/index.js"></script>
@@ -80,5 +70,3 @@
   </div>
 </body>
 </html>
-
-
