@@ -28,8 +28,8 @@
     <!-- dates of of trip -->
     <h2>Your Stay</h2>
     <!-- entry date -->
-    <div class="datepicker" id="entryDate">
-        <input type="text" placeholder="Select Date.." data-input>
+    <div class="datepicker">
+        <input type="text" placeholder="Select Date.." data-input id="entryDate">
         <a class="input-button" title="toggle" data-toggle>
             <i class="icon-calendar"></i>
         </a>
@@ -43,8 +43,8 @@
     </div>
 
     <!-- exit date -->
-    <div class="datepicker" id="exitDate">
-        <input type="text" placeholder="Select Date.." data-input>
+    <div class="datepicker" >
+        <input type="text" placeholder="Select Date.." data-input id="exitDate">
         <a class="input-button" title="toggle" data-toggle>
             <i class="icon-calendar"></i>
         </a>
@@ -63,26 +63,19 @@
        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> -->
 
        <!-- jQuery -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <!-- my js f ile -->
-      <script src="javascript/index.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+ -->
 
       <!-- external js files -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 
-      <!-- flatpickr -->
-      <script>
-        $(".datepicker").flatpickr({
-            allowInput: true,
-            wrap: true,
-            altInput: true,
-            // humanfriendly date
-            altFormat: "F j, Y",
-            dateFormat: "Y-m-d"
-        });
-      </script>
+
+
+      <!-- my js f ile -->
+      <script src="javascript/index.js"></script>
     </div>
   </div>
 </body>
