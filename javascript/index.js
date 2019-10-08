@@ -9,33 +9,34 @@ time.flatpickr({
     dateFormat: "Y-m-d"
 });
 
-const clearEntryBtn = document.querySelector('#clearEntry');
-const clearExitBtn = document.querySelector('#clearExit');
+const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
 const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
 const fpEntry = flatpickr('#entryDate', {});
 const fpExit = flatpickr('#exitDate', {});
-const today = new Date();
+// const today = new Date();
 
 
-clearEntryBtn.addEventListener('click', event => {
-  event.preventDefault();
-  fpEntry = 'all gone';
-  console.log('hello');
-});
 
-clearExitBtn.addEventListener('click', event => {
-  event.preventDefault();
-  console.log('howdy');
-});
+// addBtn.addEventListener('click', event => {
+//   event.preventDefault();
+//   // <input class="datepicker" type="text" placeholder="Entry Date.."  id="entryDate">
+
+//   let input = document.createElement("input");
+
+//   input.type = "text";
+//   input.className = "datepicker"; // set the CSS class
+//   input.placeholder = "Entry Date..";
+
+//   fpExit.appendChild(input); // put it into the DOM
+// });
 
 
 submitBtn.addEventListener('click', event => {
   event.preventDefault();
   let maxDaysValue = maxDays.value
   let timeFrameValue = timeFrame.value;
-  console.log(today.selectedDates);
   const exDate = fpExit.selectedDates[0];
   const enDate = fpEntry.selectedDates[0];
   const amountDays = ((exDate - enDate) / (60*60*24*1000));
@@ -43,12 +44,16 @@ submitBtn.addEventListener('click', event => {
   const amountDaysRounded = Math.floor(amountDays)+1;
 
   console.log(amountDaysRounded);
-  console.log(enDate);
- // year, monthIndex , day
+
+  // const firstEntry = `${enDate.getDate()}. ${enDate.getMonth()+1}. ${enDate.getYear()+1900}`;
+  // console.log(enDate.getDate());
+  // console.log(enDate.getMonth()+1);
+  // console.log(enDate.getYear()+1900);
+
 
   // console.log(typeof(timeFrame)); // object object
-  // console.log(amountDays);
-// if its the same year and month, just exitday-entryday
+  console.log(amountDays);
+
   if (maxDaysValue < amountDaysRounded) {
     console.log(`You are overstaying your visit by ${amountDaysRounded - maxDaysValue} days`)
   }else {
