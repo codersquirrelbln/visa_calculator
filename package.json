@@ -1,10 +1,10 @@
-{
 
+{
   "dependencies": {
     "bootstrap": "^4.3.1",
     "flatpickr": "^4.6.3",
-    "jquery": "^3.4.1",
-    "webpacker": "^4.6.0"
+    // "jquery": "^3.4.1"
+  },
 
   "name": "visa_calculator",
   "version": "1.0.0",
@@ -14,6 +14,4 @@
   "author": "Elisa <codersquirrelbln@gmail.com>",
   "license": "MIT",
   "private": false,
-
-  }
 }
