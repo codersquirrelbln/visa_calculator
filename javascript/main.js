@@ -79,18 +79,18 @@ addBtn.addEventListener('click', addFields);
 submitBtn.addEventListener('click', event => {
   // prevents the fields to be 'filled' with invalid input elements
   event.preventDefault();
-    // console.log('HELLO');
-    const enNDate = newFpEntry.selectedDates[0];
-    // console.log(enNDate);
-    const exNDate = newFpExit.selectedDates[0];
-  // calculating the days
-    addedDays = ((exNDate - enNDate) / (60*60*24*1000));
-    // using Math.floor to round down the days, since it would otherwise take hours into account
-    // adding one day, since the entry day as well as exit day count as one full day each
-    addedDaysRounded = Math.floor(addedDays)+1;
-    // console.log(addedDaysRounded);
-    // return addedDaysRounded;
-    // return addedDaysRounded;
+  // console.log('HELLO');
+  let enNDate = newFpEntry.selectedDates[0];
+  // console.log(enNDate);
+  let exNDate = newFpExit.selectedDates[0];
+// calculating the days
+  addedDays = ((exNDate - enNDate) / (60*60*24*1000));
+  // using Math.floor to round down the days, since it would otherwise take hours into account
+  // adding one day, since the entry day as well as exit day count as one full day each
+  addedDaysRounded = Math.floor(addedDays)+1;
+  // console.log(addedDaysRounded);
+  // return addedDaysRounded;
+  // return addedDaysRounded;
   let maxDaysValue = maxDays.value
   let timeFrameValue = parseInt(timeFrame.value);
   const exDate = fpExit.selectedDates[0];
@@ -105,7 +105,7 @@ submitBtn.addEventListener('click', event => {
   // adding one day, since the entry day as well as exit day count as one full day each
   const amountDaysRounded = Math.floor(amountDays)+1;
 
-  console.log(amountDaysRounded);
+  // console.log(amountDaysRounded);
 
   // const firstEntry = `${enDate.getDate()}. ${enDate.getMonth()+1}. ${enDate.getYear()+1900}`;
   // console.log(enDate.getDate());
@@ -127,6 +127,7 @@ submitBtn.addEventListener('click', event => {
   // console.log(dateFormat);
 
   let text;
+
   if (maxDaysValue < amountDaysRounded) {
     text = `Please remove ${amountDaysRounded - maxDaysValue} days to not overstay your visit.`;
   }else {
@@ -136,6 +137,7 @@ submitBtn.addEventListener('click', event => {
 
   // Creating new DOM-elements to display the output
   // identify parent element after which insert the results
-  const parent = document.querySelector('#result');
-  parent.textContent = text;
+  const result = document.querySelector('#result');
+  result.textContent = text;
+
 });
