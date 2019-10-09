@@ -79,6 +79,13 @@ addBtn.addEventListener('click', addFields);
 submitBtn.addEventListener('click', event => {
   // prevents the fields to be 'filled' with invalid input elements
   event.preventDefault();
+ // need an if statement to not add anything if add btn is not clicked...
+  // if () {
+
+  // } else {
+
+  // }
+
   // console.log('HELLO');
   let enNDate = newFpEntry.selectedDates[0];
   // console.log(enNDate);
@@ -93,12 +100,16 @@ submitBtn.addEventListener('click', event => {
   // return addedDaysRounded;
   let maxDaysValue = maxDays.value
   let timeFrameValue = parseInt(timeFrame.value);
-  const exDate = fpExit.selectedDates[0];
-  const enDate = fpEntry.selectedDates[0];
   // const enNDate = newFpEntry.selectedDates[0];
   // const exNDate = newFpExit.selectedDates[0];
+  const exDate = fpExit.selectedDates[0];
+  const enDate = fpEntry.selectedDates[0];
 
-  const amountDays = ((exDate - enDate) / (60*60*24*1000) + addedDaysRounded);
+  if (addedDaysRounded){
+    const amountDays = ((exDate - enDate) / (60*60*24*1000) + addedDaysRounded)
+  }else{
+    const amountDays = ((exDate - enDate) / (60*60*24*1000))
+  }
   // calculating the days
   // const amountDays = ((exDate - enDate) / (60*60*24*1000)) + ((exNDate - enNDate) / (60*60*24*1000));
   // using Math.floor to round down the days, since it would otherwise take hours into account
