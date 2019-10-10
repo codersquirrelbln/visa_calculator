@@ -17,10 +17,13 @@ time.flatpickr({
 
 let fpEntry = flatpickr('#entryDate1', {});
 let fpExit = flatpickr('#exitDate1', {});
-let addedDays;
+let addedDays = 0;
+console.log(addedDays);
 let allAddedDaysRounded = 0;
+console.log(allAddedDaysRounded);
 let newFpEntry;
 let newFpExit;
+let newFieldPairs = 0;
 
 const addFields = function (event) {
   event.preventDefault();
@@ -59,9 +62,18 @@ const addFields = function (event) {
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
- newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
- newFpExit = flatpickr(`#exitDate${exitDateNum}`, {});
+  newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
+  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {});
+
+  newFieldPairs = document.querySelector(".parent").childNodes.length;
+  newFieldPairs = (newFieldPairs-3)/2;
+  console.log(newFieldPairs)
 }
+
+
+/* adding another function that will check how many new entries there are (.include?) and count them, get the number to loop through the days count
+
+*/
 
 // adding eventListener to the Add Trip button, callbackfunction = addField
 addBtn.addEventListener('click', addFields);
@@ -69,6 +81,12 @@ addBtn.addEventListener('click', addFields);
 /* Still todo: when the input date or exit date is after timeframe set, it needs to ignore the days
 could limit the dates you can pick by using first entry + timeframe and cancel out every date after that
 using lastExit as limit on datepickr */
+
+
+
+
+
+
 
 // start calculations when the submit button is clicked
 submitBtn.addEventListener('click', event => {
@@ -79,39 +97,53 @@ submitBtn.addEventListener('click', event => {
   let maxDaysValue = maxDays.value
   let timeFrameValue = parseInt(timeFrame.value);
   let text;
-  const exDate = fpExit.selectedDates[0];
-  const enDate = fpEntry.selectedDates[0];
+  const firstEntryDate = fpEntry.selectedDates[0];
+  const firstExitDate = fpExit.selectedDates[0];
+
 
   /* calculating the days of first trip, adding one day, since the entry day as
   well as exit day count as one full day each */
-  const amountDays = ((exDate - enDate) / (60*60*24*1000)) + 1;
-  const amountDaysRounded = Math.floor(amountDays);
+  const amountFirstDays = ((firstExitDate - firstEntryDate) / (60*60*24*1000)) + 1;
+  const amountFirstDaysRounded = Math.floor(amountFirstDays);
   let amountAllDays;
 
   /* check if there are new fields added or the calculation is limited to onw trip
   if there is an element in the DOM that has the id = entryDate2,
     the value will be assigned to the new entry variables and the amount of days
     bewteen the dates will be calculated */
+
   if (document.querySelector('#entryDate2')){
-    let enNDate = newFpEntry.selectedDates[0];
-    let exNDate = newFpExit.selectedDates[0];
-    /* calculating the days, adding one day, since the entry day as well
-    as exit day count as one full day each */
-    addedDays = ((exNDate - enNDate) / (60*60*24*1000)) + 1;
-    addedDays = ((exNDate - enNDate) / (60*60*24*1000)) + 1;
-    /*using Math.floor to round down the days, since it would otherwise
-    take hours into account */
-    addedDaysRounded = Math.floor(addedDays);
-    // adding result to the variable that will later be used to calculate all days
-    allAddedDaysRounded += addedDaysRounded;
+
+    for (let i = 0; i < newFieldPairs; i ++) {
+      let newEntryDate = newFpEntry.selectedDates[0];
+      console.log(`new entry date = ${newEntryDate}`);
+
+      let newExitDate = newFpExit.selectedDates[0];
+      console.log(`new exit date = ${newExitDate}`);
+
+      /* calculating the days, adding one day, since the entry day as well
+      as exit day count as one full day each */
+      addedDays = ((newExitDate - newEntryDate) / (60*60*24*1000)) + 1;
+      console.log(`added days = ${addedDays}`);
+
+      /*using Math.floor to round down the days, since it would otherwise
+      take hours into account */
+      addedDaysRounded = Math.floor(addedDays);
+      console.log(`added days rounded = ${addedDaysRounded}`);
+
+      // adding result to the variable that will later be used to calculate all days
+      allAddedDaysRounded += addedDaysRounded;
+      console.log(`all added days rounded = ${allAddedDaysRounded}`);
+
     }
+  }
 
   if (!document.querySelector('#entryDate2')){
-    // If there is only one trip, amountAllDays = amountDaysRounded
-    amountAllDays = amountDaysRounded;
+    // If there is only one trip, amountAllDays = amountFirstDaysRounded
+    amountAllDays = amountFirstDaysRounded;
   }else{
     // if there are more trips, it adds them to the first trip
-    amountAllDays = amountDaysRounded  + addedDaysRounded;
+    amountAllDays = amountFirstDaysRounded  + allAddedDaysRounded;
   }
 
   // function to calculate the timeFrame input to the entryDate
@@ -121,7 +153,7 @@ submitBtn.addEventListener('click', event => {
     return result;
   }
   // calling addDays function, assigning result to last day of time frame
-  const lastExit = addDays(enDate, timeFrameValue );
+  const lastExit = addDays(firstEntryDate, timeFrameValue );
 
   // applying readable format: Day of the week date month year
   const lastExitReadable = lastExit.toDateString();
@@ -142,7 +174,7 @@ submitBtn.addEventListener('click', event => {
 });
 
 /* Reminder how JS Dates work:
-const firstEntry = `${enDate.getDate()}. ${enDate.getMonth()+1}. ${enDate.getYear()+1900}`;
-console.log(enDate.getDate());
-console.log(enDate.getMonth()+1); // JS starts month with index 0
-console.log(enDate.getYear()+1900); // JS starts counting at 1900 */
+const firstEntry = `${firstEntryDate.getDate()}. ${firstEntryDate.getMonth()+1}. ${firstEntryDate.getYear()+1900}`;
+console.log(firstEntryDate.getDate());
+console.log(firstEntryDate.getMonth()+1); // JS starts month with index 0
+console.log(firstEntryDate.getYear()+1900); // JS starts counting at 1900 */
