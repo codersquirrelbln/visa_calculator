@@ -12,7 +12,6 @@
 
 <body>
   <div class="container d-flex pb-3 align-items-baseline justify-content-between">
-
     <h1>Welcome to my Visa Calculator</h1>
     <p>
       Please note, that this is a simple date calculator and not in any way responsible for wrong data input by users, nor does it claim to be a guarantee for the user's stay in any country. This site is not responsible for your trip or if your entry into a country is denied
@@ -22,6 +21,7 @@
       <p>Please enter the time frame that countries give (for example 180 days in the Schengen Zone)</p>
       <input type="text" id="timePeriod" placeholder="Insert Time Frame"  name="time_period" data-input>
     </div>
+
 
     <div>
       <p>
@@ -34,36 +34,29 @@
     <p>Please enter your planned entry and exit dates</p>
 
     <div class="container"  >
-      <input class="datepicker" type="text" placeholder="Entry Date.."  id="entryDate">
+
+      <input class="datepicker" type="text" placeholder="Entry Date.."  id="entryDate1">
+
     </div>
 
     <div class='parent'>
-        <input class="datepicker" type="text" placeholder="Exit date.." data-input id="exitDate">
-        <a class="input-button" title="toggle" data-toggle>
-            <i class="icon-calendar"></i>
-        </a>
-        <a class="input-button" title="clear" data-clear>
-            <i class="icon-close"></i>
-        </a>
+      <input class="datepicker" type="text" placeholder="Exit date.." data-input id="exitDate1">
     </div>
-        <button class="add-btn btn btn-primary">+ Add another stay</button>
+      <button class="add-btn btn btn-primary">+ Add another stay</button>
     <div>
 
-      </div id="submit" class="outputParent" >
-          <button class="submit-btn btn btn-primary" id="submitBtn">Submit</button>
-      <div>
+    </div id="submit" class="outputParent" >
+      <button class="submit-btn btn btn-primary" id="submitBtn">Submit</button>
+    <div>
 
-        <div id="result">
-
-        </div>
+    <div id="result"></div>
 
     <!-- scripts -->
-      <!-- external js files -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
+    <!-- external js files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
 
-      <!-- my js f ile -->
-      <script src="javascript/main.js"></script>
-    </div>
+    <!-- internal js file -->
+    <script src="javascript/main.js"></script>
   </div>
 </body>
 </html>
