@@ -3,8 +3,9 @@ const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
 const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
-let entryDateNum = 0;
-let exitDateNum = 0;
+let entryDateNum = 1;
+let exitDateNum = 1;
+
 
 time.flatpickr({
     allowInput: true,
@@ -15,9 +16,10 @@ time.flatpickr({
     dateFormat: "Y-m-d"
 });
 
-let fpEntry = flatpickr('#entryDate', {});
-let fpExit = flatpickr('#exitDate', {});
+let fpEntry = flatpickr('#entryDate1', {});
+let fpExit = flatpickr('#exitDate1', {});
 let addedDays;
+let allAddedDaysRounded = 0;
 let newFpEntry;
 let newFpExit;
 
@@ -60,10 +62,12 @@ const addFields = function (event) {
   // apply flatpickr to the new elements
  newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {});
-
   // return newFpEntry;
   // return newFpExit;
   // console.log(newFpExit);
+  // console.log('addTrip');
+  // return 'addTrip';
+
 }
 
 addBtn.addEventListener('click', addFields);
@@ -87,34 +91,38 @@ submitBtn.addEventListener('click', event => {
   // }
 
   // console.log('HELLO');
-  let enNDate = newFpEntry.selectedDates[0];
-  // console.log(enNDate);
-  let exNDate = newFpExit.selectedDates[0];
-// calculating the days
-  addedDays = ((exNDate - enNDate) / (60*60*24*1000));
-  // using Math.floor to round down the days, since it would otherwise take hours into account
-  // adding one day, since the entry day as well as exit day count as one full day each
-  addedDaysRounded = Math.floor(addedDays)+1;
-  // console.log(addedDaysRounded);
-  // return addedDaysRounded;
-  // return addedDaysRounded;
+  if (document.querySelector('#entryDate2')){
+    let enNDate = newFpEntry.selectedDates[0];
+    // console.log(enNDate);
+    let exNDate = newFpExit.selectedDates[0];
+  // calculating the days
+    addedDays = ((exNDate - enNDate) / (60*60*24*1000)) + 1;
+    // using Math.floor to round down the days, since it would otherwise take hours into account
+    // adding one day, since the entry day as well as exit day count as one full day each
+    addedDaysRounded = Math.floor(addedDays);
+    allAddedDaysRounded += addedDaysRounded;
+  }
+
   let maxDaysValue = maxDays.value
   let timeFrameValue = parseInt(timeFrame.value);
-  // const enNDate = newFpEntry.selectedDates[0];
-  // const exNDate = newFpExit.selectedDates[0];
   const exDate = fpExit.selectedDates[0];
   const enDate = fpEntry.selectedDates[0];
 
-  if (addedDaysRounded){
-    const amountDays = ((exDate - enDate) / (60*60*24*1000) + addedDaysRounded)
-  }else{
-    const amountDays = ((exDate - enDate) / (60*60*24*1000))
-  }
   // calculating the days
-  // const amountDays = ((exDate - enDate) / (60*60*24*1000)) + ((exNDate - enNDate) / (60*60*24*1000));
-  // using Math.floor to round down the days, since it would otherwise take hours into account
   // adding one day, since the entry day as well as exit day count as one full day each
-  const amountDaysRounded = Math.floor(amountDays)+1;
+  const amountDays = ((exDate - enDate) / (60*60*24*1000)) + 1;
+  const amountDaysRounded = Math.floor(amountDays);
+  let amountAllDays;
+
+
+
+  if (!document.querySelector('#entryDate2')){
+    amountAllDays = amountDaysRounded;
+  }else{
+    amountAllDays = amountDaysRounded  + addedDaysRounded;
+  }
+  // needed if both nums in if statemnet are rounded already?
+  const amountAllDaysRounded = Math.floor(amountAllDays);
 
   // console.log(amountDaysRounded);
 
@@ -139,10 +147,10 @@ submitBtn.addEventListener('click', event => {
 
   let text;
 
-  if (maxDaysValue < amountDaysRounded) {
-    text = `Please remove ${amountDaysRounded - maxDaysValue} days to not overstay your visit.`;
+  if (maxDaysValue < amountAllDaysRounded) {
+    text = `Please remove ${amountAllDaysRounded - maxDaysValue} days to not overstay your visit.`;
   }else {
-    text = `You are within the allowed time range, using ${amountDaysRounded} days and have another ${maxDaysValue - amountDaysRounded} days to use until ${lastExitReadable}`;
+    text = `You are within the allowed time range, using ${amountAllDaysRounded} days and have another ${maxDaysValue - amountAllDaysRounded} days to use until ${lastExitReadable}`;
   }
 
 
