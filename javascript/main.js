@@ -5,6 +5,8 @@ const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
 let entryDateNum = 1;
 let exitDateNum = 1;
+let allNewEntries = [];
+let allNewExits = [];
 
 time.flatpickr({
     allowInput: true,
@@ -59,15 +61,22 @@ const addFields = function (event) {
   parent.appendChild(newEntry);
   parent.appendChild(newExit);
 
+
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
   newFpExit = flatpickr(`#exitDate${exitDateNum}`, {});
 
+  allNewEntries.push(newFpEntry);
+  allNewExits.push(newFpExit);
+  console.log(allNewEntries);
+  console.log(allNewExits);
+
   newFieldPairs = document.querySelector(".parent").childNodes.length;
   newFieldPairs = (newFieldPairs-3)/2;
   console.log(newFieldPairs)
+  console.log('newFpEntry');
 }
 
 
@@ -82,12 +91,6 @@ addBtn.addEventListener('click', addFields);
 could limit the dates you can pick by using first entry + timeframe and cancel out every date after that
 using lastExit as limit on datepickr */
 
-
-
-
-
-
-
 // start calculations when the submit button is clicked
 submitBtn.addEventListener('click', event => {
   // prevents the fields to be 'filled' with invalid input elements
@@ -98,6 +101,7 @@ submitBtn.addEventListener('click', event => {
   let timeFrameValue = parseInt(timeFrame.value);
   let text;
   const firstEntryDate = fpEntry.selectedDates[0];
+
   const firstExitDate = fpExit.selectedDates[0];
 
 
@@ -113,12 +117,18 @@ submitBtn.addEventListener('click', event => {
     bewteen the dates will be calculated */
 
   if (document.querySelector('#entryDate2')){
+    let newEntryDate;
+    let newExitDate;
 
     for (let i = 0; i < newFieldPairs; i ++) {
-      let newEntryDate = newFpEntry.selectedDates[0];
+      let entries = allNewEntries[i];
+      console.log(`entries: ${entries}`);
+      newEntryDate = entries.selectedDates[0];
       console.log(`new entry date = ${newEntryDate}`);
 
-      let newExitDate = newFpExit.selectedDates[0];
+      let exits = allNewExits[i];
+
+      newExitDate = exits.selectedDates[0];
       console.log(`new exit date = ${newExitDate}`);
 
       /* calculating the days, adding one day, since the entry day as well
@@ -134,8 +144,9 @@ submitBtn.addEventListener('click', event => {
       // adding result to the variable that will later be used to calculate all days
       allAddedDaysRounded += addedDaysRounded;
       console.log(`all added days rounded = ${allAddedDaysRounded}`);
-
+  // console.log('break');
     }
+
   }
 
   if (!document.querySelector('#entryDate2')){
