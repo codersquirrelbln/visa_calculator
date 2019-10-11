@@ -7,6 +7,7 @@ let entryDateNum = 1;
 let exitDateNum = 1;
 let allNewEntries = [];
 let allNewExits = [];
+let amountAllDays;
 
 time.flatpickr({
     allowInput: true,
@@ -19,10 +20,10 @@ time.flatpickr({
 
 let fpEntry = flatpickr('#entryDate1', {});
 let fpExit = flatpickr('#exitDate1', {});
-let addedDays = 0;
-console.log(addedDays);
-let allAddedDaysRounded = 0;
-console.log(allAddedDaysRounded);
+// let addedDays = 0;
+// console.log(addedDays);
+// let allAddedDaysRounded = 0;
+// console.log(allAddedDaysRounded);
 let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
@@ -93,11 +94,15 @@ using lastExit as limit on datepickr */
 
 // start calculations when the submit button is clicked
 submitBtn.addEventListener('click', event => {
+
   // prevents the fields to be 'filled' with invalid input elements
   event.preventDefault();
+  console.log(amountAllDays);
+  // if (amountAllDays.value != 0) {amountAllDays = 0};
 
   // defining variables and assigning them to values you can use in calculation
-  let maxDaysValue = maxDays.value
+  let maxDaysValue = maxDays.value;
+
   let timeFrameValue = parseInt(timeFrame.value);
   let text;
   const firstEntryDate = fpEntry.selectedDates[0];
@@ -109,12 +114,14 @@ submitBtn.addEventListener('click', event => {
   well as exit day count as one full day each */
   const amountFirstDays = ((firstExitDate - firstEntryDate) / (60*60*24*1000)) + 1;
   const amountFirstDaysRounded = Math.floor(amountFirstDays);
-  let amountAllDays;
+  // let amountAllDays;
 
   /* check if there are new fields added or the calculation is limited to onw trip
   if there is an element in the DOM that has the id = entryDate2,
     the value will be assigned to the new entry variables and the amount of days
     bewteen the dates will be calculated */
+    let addedDays = 0;
+    let allAddedDaysRounded = 0;
 
   if (document.querySelector('#entryDate2')){
     let newEntryDate;
@@ -125,7 +132,6 @@ submitBtn.addEventListener('click', event => {
       console.log(`entries: ${entries}`);
       newEntryDate = entries.selectedDates[0];
       console.log(`new entry date = ${newEntryDate}`);
-
       let exits = allNewExits[i];
 
       newExitDate = exits.selectedDates[0];
