@@ -3,20 +3,38 @@ const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
 const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
-
+const firstEntry = document.querySelector('#entryDate1');
+let lastExit;
 let entryDateNum = 1;
 let exitDateNum = 1;
 let allNewEntries = [];
 let allNewExits = [];
 let amountAllDays;
+let lastExitReadable;
+let timeFrameValue;
+let firstEntryDate;
+
+/*
+I need to add an event listener to the time frame input field
+when it is exited, after input, it needs to identify the integer
+as soon as the first date is plugged in (event listener?) it needs to calculate
+the max day available in the date pickr. is that possible? put in a function before
+it gets to max days. no. max days will call the function?
+*/
+
+
+
+
 
 time.flatpickr({
-    allowInput: true,
-    wrap: true,
+    // allowInput: true,
+    // wrap: true,
     // humanfriendly date
     altInput: true,
     altFormat: "F j, Y",
-    dateFormat: "Y-m-d"
+    dateFormat: "d.m.Y",
+    // maxDate:
+    // maxDate: `${lastExitReadable}`
 });
 
 let fpEntry = flatpickr('#entryDate1', {});
@@ -25,12 +43,39 @@ let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
 
+// get the value of timeFrame input, fired when eventlistener gets input
+function setTimeFrame(){
+  console.log('this is the timeFrameValue');
+  timeFrameValue = timeFrame.value // gives me 180
+  console.log(timeFrameValue);
+  return timeFrameValue;
+};
+
+
 // function to calculate the timeFrame input to the entryDate
 function addDays(date, days) {
-  let result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
+ let result = new Date(date);
+ result.setDate(result.getDate() + days);
+ return result;
 }
+
+timeFrame.addEventListener('input', setTimeFrame);
+  firstEntry.addEventListener('input', function(event){
+    firstEntryDate = fpEntry.selectedDates[0];
+    console.log('this is the firstEntryDate');
+
+    console.log(firstEntryDate);
+    lastExit = addDays(firstEntryDate, setTimeFrame() );
+    let lastExitReadable = lastExit.toDateString();
+
+    console.log(lastExitReadable);
+
+  // let firstEntryDay = firstEntry.getDate();
+  // console.log(firstEntryDay);
+});
+
+
+
 
 const addFields = function (event) {
   event.preventDefault();
@@ -103,7 +148,7 @@ submitBtn.addEventListener('click', event => {
 
   // defining variables and assigning them to values you can use in calculation
   let maxDaysValue = maxDays.value;
-  let timeFrameValue = parseInt(timeFrame.value);
+  // let timeFrameValue = parseInt(timeFrame.value);
   let text;
   let firstEntryDate = fpEntry.selectedDates[0];
   let firstExitDate = fpExit.selectedDates[0];
@@ -160,12 +205,15 @@ submitBtn.addEventListener('click', event => {
 
 
   // calling addDays function, assigning result to last day of time frame
-  const lastExit = addDays(firstEntryDate, timeFrameValue );
 
-  // applying readable format: Day of the week date month year
-  const lastExitReadable = lastExit.toDateString();
-  /* alternatively applying format: day/month/year
- const dateFormat = Intl.DateTimeFormat().format(lastExit); */
+
+   lastExit = addDays(firstEntryDate, timeFrameValue );
+
+   // applying readable format: Day of the week date month year
+   let lastExitReadable = lastExit.toDateString();
+   /* alternatively applying format: day/month/year
+  const dateFormat = Intl.DateTimeFormat().format(lastExit); */
+
 
   // output:
   if (maxDaysValue < amountAllDays) {
