@@ -4,6 +4,7 @@ const timeFrame = document.querySelector('#timePeriod');
 const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
 const firstEntry = document.querySelector('#entryDate1');
+const firstExit = document.querySelector('#exitDate1');
 let lastExit;
 let entryDateNum = 1;
 let exitDateNum = 1;
@@ -13,6 +14,9 @@ let amountAllDays;
 let lastExitReadable;
 let timeFrameValue;
 let firstEntryDate;
+let fpExit;
+let firstExitDate;
+let timeFrameValueCalendar;
 
 /*
 I need to add an event listener to the time frame input field
@@ -22,7 +26,15 @@ the max day available in the date pickr. is that possible? put in a function bef
 it gets to max days. no. max days will call the function?
 */
 
+// get the value of timeFrame input, fired when eventlistener gets input
+function setTimeFrame(){
+  console.log('this is the timeFrameValue');
+  // timeFrameValue = timeFrame.value // gives me 180
+  timeFrameValue = parseInt(timeFrame.value);
 
+  console.log(timeFrameValue);
+  return timeFrameValue;
+};
 
 
 
@@ -32,24 +44,23 @@ time.flatpickr({
     // humanfriendly date
     altInput: true,
     altFormat: "F j, Y",
-    dateFormat: "d.m.Y",
+    dateFormat: "d.m.Y"
     // maxDate:
-    // maxDate: `${lastExitReadable}`
 });
 
-let fpEntry = flatpickr('#entryDate1', {});
-let fpExit = flatpickr('#exitDate1', {});
+let fpEntry = flatpickr('#entryDate1', {
+
+});
+
 let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
 
-// get the value of timeFrame input, fired when eventlistener gets input
-function setTimeFrame(){
-  console.log('this is the timeFrameValue');
-  timeFrameValue = timeFrame.value // gives me 180
-  console.log(timeFrameValue);
-  return timeFrameValue;
-};
+//
+// console.dir(fpExit);
+
+
+
 
 
 // function to calculate the timeFrame input to the entryDate
@@ -59,21 +70,35 @@ function addDays(date, days) {
  return result;
 }
 
-timeFrame.addEventListener('input', setTimeFrame);
-  firstEntry.addEventListener('input', function(event){
-    firstEntryDate = fpEntry.selectedDates[0];
-    console.log('this is the firstEntryDate');
 
-    console.log(firstEntryDate);
-    lastExit = addDays(firstEntryDate, setTimeFrame() );
-    let lastExitReadable = lastExit.toDateString();
 
-    console.log(lastExitReadable);
 
-  // let firstEntryDay = firstEntry.getDate();
-  // console.log(firstEntryDay);
-});
+  // timeFrame.addEventListener('input', setTimeFrame);
+    firstEntry.addEventListener('input', function(event){
+      firstEntryDate = fpEntry.selectedDates[0];
+      console.log('this is the firstEntryDate');
 
+      console.log(firstEntryDate);
+      lastExit = addDays(firstEntryDate, setTimeFrame() );
+      // lastExitReadable = lastExit.toDateString();
+
+      console.log(lastExit);
+      // console.log(lastExitReadable);
+      timeFrameValueCalendar = timeFrameValue - 14;
+
+      let fpExit = flatpickr('#exitDate1', {
+          maxDate: new Date().fp_incr(timeFrameValueCalendar)
+      });
+    // let firstEntryDay = firstEntry.getDate();
+    // console.log(firstEntryDay);
+  firstExit.addEventListener('input', function(event){
+        firstExitDate = fpExit.selectedDates[0];
+        console.log('this is the firstExitDate');
+        console.log(firstExitDate);
+
+  })
+  });
+// }
 
 
 
@@ -116,17 +141,17 @@ const addFields = function (event) {
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
-  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {});
+  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {maxDate: new Date().fp_incr(timeFrameValueCalendar)});
 
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
-  console.log(allNewEntries);
-  console.log(allNewExits);
+  // console.log(allNewEntries);
+  // console.log(allNewExits);
 
   newFieldPairs = document.querySelector(".parent").childNodes.length;
   newFieldPairs = (newFieldPairs-3)/2;
-  console.log(newFieldPairs)
-  console.log('newFpEntry');
+  // console.log(newFieldPairs)
+  // console.log('newFpEntry');
 }
 
 /* adding another function that will check how many new entries there are (.include?) and count them, get the number to loop through the days count
@@ -150,8 +175,8 @@ submitBtn.addEventListener('click', event => {
   let maxDaysValue = maxDays.value;
   // let timeFrameValue = parseInt(timeFrame.value);
   let text;
-  let firstEntryDate = fpEntry.selectedDates[0];
-  let firstExitDate = fpExit.selectedDates[0];
+  // let firstEntryDate = fpEntry.selectedDates[0];
+  // let firstExitDate = fpExit.selectedDates[0];
 
   /* calculating the days of first trip, adding one day, since the entry day as
   well as exit day count as one full day each */
@@ -207,7 +232,7 @@ submitBtn.addEventListener('click', event => {
   // calling addDays function, assigning result to last day of time frame
 
 
-   lastExit = addDays(firstEntryDate, timeFrameValue );
+   // lastExit = addDays(firstEntryDate, timeFrameValue );
 
    // applying readable format: Day of the week date month year
    let lastExitReadable = lastExit.toDateString();
