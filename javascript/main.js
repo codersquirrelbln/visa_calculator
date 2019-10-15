@@ -84,10 +84,12 @@ function addDays(date, days) {
 
       console.log(lastExit);
       // console.log(lastExitReadable);
-      timeFrameValueCalendar = timeFrameValue - 14;
+      timeFrameValueCalendar = timeFrameValue;
+      console.log('this is the timeFrameValueCalendar');
 
+      console.log(timeFrameValueCalendar);
       let fpExit = flatpickr('#exitDate1', {
-          maxDate: new Date().fp_incr(timeFrameValueCalendar)
+          maxDate: new Date(firstEntryDate).fp_incr(timeFrameValueCalendar)
       });
     // let firstEntryDay = firstEntry.getDate();
     // console.log(firstEntryDay);
@@ -140,8 +142,8 @@ const addFields = function (event) {
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
-  newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {});
-  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {maxDate: new Date().fp_incr(timeFrameValueCalendar)});
+  newFpEntry = flatpickr(`#entryDate${entryDateNum}`, {maxDate: new Date(firstEntryDate).fp_incr(timeFrameValueCalendar)});
+  newFpExit = flatpickr(`#exitDate${exitDateNum}`, {minDate: new Date(newEntry), maxDate: new Date(firstEntryDate).fp_incr(timeFrameValueCalendar)});
 
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
@@ -189,6 +191,7 @@ submitBtn.addEventListener('click', event => {
     bewteen the dates will be calculated */
     let addedDays = 0;
     let allAddedDaysRounded = 0;
+
 
     if (document.querySelector('#entryDate2')){
       let newEntryDate;
