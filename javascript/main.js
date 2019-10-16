@@ -13,10 +13,13 @@ let allNewExits = [];
 let amountAllDays;
 let lastExitReadable;
 let timeFrameValue;
-let entryDate = `entryDate${entryDateNum}`;
+let entryDate;
 let fpExit;
-let exitDate = `exitDate${exitDateNum}`;
+let exitDate;
 let timeFrameValueCalendar;
+
+let newEntryDate;
+let newExitDate;
 
 /*
 I need to add an event listener to the time frame input field
@@ -151,40 +154,73 @@ const addFields = function (event) {
 //   console.log(blockexit);
 
 
+
+// need to iterate through all complete array
+for (let i = 0; i < newFieldPairs; i ++) {
+  let entries = allNewEntries[i];
+  console.log(`entries: ${entries}`);
+  newEntryDate = entries.selectedDates[0];
+  console.log(`new entry date = ${newEntryDate}`);
+  let exits = allNewExits[i];
+
+  newExitDate = exits.selectedDates[0];
+  console.log(`new exit date = ${newExitDate}`);
+
+  }
+let blockedDates = new Object();
+blockedDates.entry = newEntryDate;
+blockedDates.exit = newExit;
+console.log(blockedDates.entry);
+console.log(blockedDates.exit);
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
-  newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
-              {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
-              disable: [
-                      {
-                          from: entryDate,
-                          to: exitDate
-                      }
-                      // ,
-                      // if (`#entryDate${entryDateNum}`)
-                      // {
-                      //   from: `#entryDate${entryDateNum-1}`,
-                      //   to: `#exitDate${exitDateNum-1}`
-
-                      // }
-                      ]
-                    });
-  newFpExit = flatpickr(`#exitDate${exitDateNum}`,
-              {minDate: new Date(newEntry),
-                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+  // if (allNewEntries.length != 0) {
+  //   console.log('its an empty array');
+    newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+                {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: [
                         {
-                            from: entryDate,
-                            to: exitDate
+                          from: entryDate,
+                          to: exitDate
+                        },
+                        {
+                          from: newEntryDate,
+                          to: newExitDate
                         }
                         // ,
+                        // function(){
+                        //   if (`#entryDate${entryDateNum-1}`){
+                        //     from: `#entryDate${entryDateNum-1}`,
+                        //     to: `#exitDate${exitDateNum-1}`
+                        //   }
+                        // }
+                        // ,
+                        // if (`#entryDate${entryDateNum}`)
                         // {
-                        //  from: `#entryDate${entryDateNum-1}`,
-                        //  to: `#exitDate${exitDateNum-1}`
+                        //   from: `#entryDate${entryDateNum-1}`,
+                        //   to: `#exitDate${exitDateNum-1}`
+
                         // }
                         ]
-              });
+                      });
+    newFpExit = flatpickr(`#exitDate${exitDateNum}`,
+                {minDate: new Date(newEntry),
+                  maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+                  disable: [
+                          {
+                              from: entryDate,
+                              to: exitDate
+                          },
+                            {
+                          from: newEntryDate,
+                          to: newExitDate
+
+                        }
+                          ]
+                });
+    // console.log(newFpEntry);
+    // console.log(newFpExit);
 
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
@@ -235,8 +271,7 @@ submitBtn.addEventListener('click', event => {
 
 
     if (document.querySelector('#entryDate2')){
-      let newEntryDate;
-      let newExitDate;
+
 
       for (let i = 0; i < newFieldPairs; i ++) {
         let entries = allNewEntries[i];
