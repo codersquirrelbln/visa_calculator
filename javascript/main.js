@@ -22,6 +22,10 @@ let newExitDate;
 let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
+// dates for the days that should get blocked out
+let entryDt;
+let exitDt;
+
 
 // get the value of timeFrame input, fired when eventlistener gets input
 function setTimeFrame(){
@@ -146,26 +150,21 @@ for (let i = 0; i < newFieldPairs; i ++) {
   console.log(`all blocked dates entry und exit ${allBlockedDates}`);
 
   newDates = blockDates(newEntryDate, newExitDate);
-  // newDates.entry = newEntryDate;
-  // newDates.exit = newExitDate;
   allBlockedDates.push(newDates);
   console.log(allBlockedDates);
   console.log(typeof(allBlockedDates[2])) ;
 
 
-  // newDates = blockDates(newEntryDate, newExitDate);
-  // allBlockedDates.push(newDates);
-  // // newDates['entry']= `${newEntryDate}`;
-  // // console.log(newDates['entry']);
-  // // newDates.exit = newExitDate;
-  // // allBlockedDates.push(newDates);
-  // console.log('new blocked dates :');
-  // // console.log(allBlockedDates);
-  //   let pairs;
-  //   for (let i = 0; i < newFieldPairs; i ++) {
-  //     pairs = allBlockedDates[i];
-  //   }
-  //     console.log(pairs);
+for (let i = 0; i < newFieldPairs; i ++) {
+  if (i === 2) {
+    continue;}
+  entryDt = allBlockedDates[i];
+  exitDt = allBlockedDates[i+1];
+  console.log(`entryDt: ${entryDt}`);
+  console.log(`exitDt: ${exitDt}`);
+
+
+  };
 
   }
 
@@ -199,8 +198,8 @@ for (let i = 0; i < newFieldPairs; i ++) {
                           to: exitDate
                         },
                         {
-                          from: newEntryDate,
-                          to: newExitDate
+                          from: entryDt,
+                          to: exitDt
                         }
                         // ,
                         // function(){
@@ -227,8 +226,8 @@ for (let i = 0; i < newFieldPairs; i ++) {
                               to: exitDate
                           },
                             {
-                          from: newEntryDate,
-                          to: newExitDate
+                          from: entryDt,
+                          to: exitDt
 
                         }
                           ]
