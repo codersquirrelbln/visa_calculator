@@ -1,7 +1,15 @@
 
 body {
   text-align: center;
+  margin: 0;
   background: cornflowerblue;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.container {
+  text-align: center;
+  padding: .8em 7.2em;
 }
 
 img {
