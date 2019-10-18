@@ -42,6 +42,7 @@ time.flatpickr({
   altInput: true,
   altFormat: "F j, Y",
   dateFormat: "d.m.Y"
+
   // maxDate:
 });
 
@@ -120,120 +121,91 @@ const addFields = function (event) {
   parent.appendChild(newEntry);
   parent.appendChild(newExit);
 
-// let blockentry = `#entryDate${entryDateNum-1}`;
-//   console.log('this is the blockentry');
-//   console.log(blockentry);
-//   let blockexit = `#exitDate${exitDateNum-1}`;
-//   console.log('this is the blockexit');
-//   console.log(blockexit);
 
-let allBlockedDates = [];
-let newDates;
-// need to iterate through all complete array
-  function blockDates(entry, exit) {
-    this.entry = entry;
-    this.exit = exit;
-  }
+  // let blockentry = `#entryDate${entryDateNum-1}`;
+  //   console.log('this is the blockentry');
+  //   console.log(blockentry);
+  //   let blockexit = `#exitDate${exitDateNum-1}`;
+  //   console.log('this is the blockexit');
+  //   console.log(blockexit);
 
-for (let i = 0; i < newFieldPairs; i ++) {
-  let entries = allNewEntries[i];
-  // console.log(`entries: ${entries}`);
-  newEntryDate = entries.selectedDates[0];
-  console.log(`new entry date = ${newEntryDate}`);
-  allBlockedDates.push(newEntryDate);
-  console.log(`all blocked dates entry ${allBlockedDates}`);
-  let exits = allNewExits[i];
+  let allBlockedDates = [];
+  let newDates;
 
-  newExitDate = exits.selectedDates[0];
-  console.log(`new exit date = ${newExitDate}`);
-  allBlockedDates.push(newExitDate);
-  console.log(`all blocked dates entry und exit ${allBlockedDates}`);
+  for (let i = 0; i < newFieldPairs; i ++) {
+    let entries = allNewEntries[i];
+    // console.log(`entries: ${entries}`);
+    newEntryDate = entries.selectedDates[0];
+    console.log(`new entry date = ${newEntryDate}`);
+    allBlockedDates.push(newEntryDate);
+    console.log(`all blocked dates entry ${allBlockedDates}`);
+    let exits = allNewExits[i];
 
-  newDates = blockDates(newEntryDate, newExitDate);
-  allBlockedDates.push(newDates);
-  console.log(allBlockedDates);
-  console.log(typeof(allBlockedDates[2])) ;
+    newExitDate = exits.selectedDates[0];
+    console.log(`new exit date = ${newExitDate}`);
+    allBlockedDates.push(newExitDate);
+    console.log(`all blocked dates entry und exit ${allBlockedDates}`);
 
-
-for (let i = 0; i < newFieldPairs; i ++) {
-  if (i === 2) {
-    continue;}
-  entryDt = allBlockedDates[i];
-  exitDt = allBlockedDates[i+1];
-  console.log(`entryDt: ${entryDt}`);
-  console.log(`exitDt: ${exitDt}`);
-
-
+    // newDates = blockDates(newEntryDate, newExitDate);
+    // allBlockedDates.push(newDates);
+    // console.log(allBlockedDates);
+    // console.log(typeof(allBlockedDates[2]))
   };
 
-  }
 
 
+  for (let i = 0; i < newFieldPairs; i += 3) {
+    entryDt = allBlockedDates[i];
+    exitDt = allBlockedDates[i+1];
+    let blockDate = new Block(entryDt, exitDt);
+    console.log(`entryDt: ${entryDt}`);
+    console.log(`exitDt: ${exitDt}`);
+    // console.log(`selected dates print out: ${entryDt.selectedDates}`);
+  };
 
-  // function showBlockdDates(dateType, dateValue) {
-  //   let result = '';
-  //   for (let j in dateType) {
-  //     result += `${dateValue}.${j} = ${dateType[j]}`;
-  //   }
-  //   return result;
-  // }
+  // console.log(allBlockedDates);
 
+  // // need to iterate through all complete array
+    function Block(entry, exit) {
+      this.entry = entry;
+      this.exit = exit;
+    }
 
-  // console.log(`all blocked dates: ${allBlockedDates}`);
-// let blockedDates = new Object();
-// blockedDates.entry = newEntryDate;
-// blockedDates.exit = newExit;
-// console.log(blockedDates.entry);
-// console.log(blockedDates.exit);
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
-  // if (allNewEntries.length != 0) {
-  //   console.log('its an empty array');
-    newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
-                {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+  newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+              {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+              disable: [
+                      {
+                        from: entryDate,
+                        to: exitDate
+                      },
+                      {
+                        from: entryDt,
+                        to: exitDt
+                      }
+                      ]
+                    });
+  newFpExit = flatpickr(`#exitDate${exitDateNum}`,
+              {minDate: new Date(newEntry),
+                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: [
                         {
-                          from: entryDate,
-                          to: exitDate
+                            from: entryDate,
+                            to: exitDate
                         },
-                        {
-                          from: entryDt,
-                          to: exitDt
-                        }
-                        // ,
-                        // function(){
-                        //   if (`#entryDate${entryDateNum-1}`){
-                        //     from: `#entryDate${entryDateNum-1}`,
-                        //     to: `#exitDate${exitDateNum-1}`
-                        //   }
-                        // }
-                        // ,
-                        // if (`#entryDate${entryDateNum}`)
-                        // {
-                        //   from: `#entryDate${entryDateNum-1}`,
-                        //   to: `#exitDate${exitDateNum-1}`
-
-                        // }
-                        ]
-                      });
-    newFpExit = flatpickr(`#exitDate${exitDateNum}`,
-                {minDate: new Date(newEntry),
-                  maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
-                  disable: [
                           {
-                              from: entryDate,
-                              to: exitDate
-                          },
-                            {
-                          from: entryDt,
-                          to: exitDt
+                        from: entryDt,
+                        to: exitDt
 
-                        }
-                          ]
-                });
-    // console.log(newFpEntry);
-    // console.log(newFpExit);
+                      }
+                        ]
+              });
+
+
+// needs to call function that loops through the dates and place the right to and from pairs together
+// needs to loop and open new pair as long as there are pairs
 
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
@@ -244,7 +216,7 @@ for (let i = 0; i < newFieldPairs; i ++) {
   newFieldPairs = (newFieldPairs-3)/2;
   // console.log(newFieldPairs)
   // console.log('newFpEntry');
-}
+};
 
 /* adding another function that will check how many new entries there are (.include?) and count them, get the number to loop through the days count
 */
