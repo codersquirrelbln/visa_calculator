@@ -88,9 +88,9 @@ firstEntry.addEventListener('input', function(event){
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
-  console.log(`entrydatenum: ${entryDateNum}`);
+  // console.log(`entrydatenum: ${entryDateNum}`);
   exitDateNum +=1;
-  console.log(`exitydatenum: ${exitDateNum}`);
+  // console.log(`exitydatenum: ${exitDateNum}`);
 
   // creating two new input fields
   let newEntry = document.createElement('input');
@@ -138,20 +138,26 @@ const addFields = function (event) {
     newEntryDate = entries.selectedDates[0];
     console.log(`new entry date = ${newEntryDate}`);
     allBlockedDates.push(newEntryDate);
-    console.log(`all blocked dates entry ${allBlockedDates}`);
+    // console.log(`all blocked dates entry ${allBlockedDates}`);
     let exits = allNewExits[i];
 
     newExitDate = exits.selectedDates[0];
     console.log(`new exit date = ${newExitDate}`);
     allBlockedDates.push(newExitDate);
-    console.log(`all blocked dates entry und exit ${allBlockedDates}`);
+    // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
+    console.log(typeof(allBlockedDates));
+
+
 
     // newDates = blockDates(newEntryDate, newExitDate);
     // allBlockedDates.push(newDates);
     // console.log(allBlockedDates);
     // console.log(typeof(allBlockedDates[2]))
   };
+  console.log(`all blocked dates entry und exit ${allBlockedDates}`);
 
+  console.log(allBlockedDates[0]);
+  console.log(allBlockedDates[1]);
 
 
   for (let i = 0; i < newFieldPairs; i += 3) {
@@ -160,6 +166,7 @@ const addFields = function (event) {
     let blockDate = new Block(entryDt, exitDt);
     console.log(`entryDt: ${entryDt}`);
     console.log(`exitDt: ${exitDt}`);
+    // console.log(`blockdates: ${blockDate}`);
     // console.log(`selected dates print out: ${entryDt.selectedDates}`);
   };
 
@@ -177,14 +184,7 @@ const addFields = function (event) {
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
               {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: [
-                      {
-                        from: entryDate,
-                        to: exitDate
-                      },
-                      {
-                        from: entryDt,
-                        to: exitDt
-                      }
+
                       ]
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
