@@ -107,7 +107,7 @@ const addFields = function (event) {
 
 
   let allBlockedDates = [];
-    allBlockedDates.push({from: entryDate, to: exitDate});
+  allBlockedDates.push({from: entryDate, to: exitDate});
 
   let newDates;
 
@@ -141,15 +141,15 @@ const addFields = function (event) {
   // console.log(allBlockedDates[1]);
 
 
-  for (let i = 0; i < newFieldPairs; i += 3) {
-    entryDt = allBlockedDates[i];
-    exitDt = allBlockedDates[i+1];
-    let blockDate = new Block(entryDt, exitDt);
-    console.log(`entryDt: ${entryDt}`);
-    console.log(`exitDt: ${exitDt}`);
-    // console.log(`blockdates: ${blockDate}`);
-    // console.log(`selected dates print out: ${entryDt.selectedDates}`);
-  };
+  // for (let i = 0; i < newFieldPairs; i += 3) {
+  //   entryDt = allBlockedDates[i];
+  //   exitDt = allBlockedDates[i+1];
+  //   let blockDate = new Block(entryDt, exitDt);
+  //   console.log(`entryDt: ${entryDt}`);
+  //   console.log(`exitDt: ${exitDt}`);
+  //   // console.log(`blockdates: ${blockDate}`);
+  //   // console.log(`selected dates print out: ${entryDt.selectedDates}`);
+  // };
 
   // console.log(allBlockedDates);
 
@@ -166,7 +166,7 @@ const addFields = function (event) {
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
     //  block out dates before first entry
               {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
-              allBlockedDates
+              disable: allBlockedDates
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
     //  block out the dates before first entry
