@@ -74,6 +74,7 @@ firstEntry.addEventListener('input', function(event){
 
   let fpExit = flatpickr('#exitDate1', {
     // min new date entry date  fp increment 1??
+     minDate: entryDate,
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
@@ -165,12 +166,17 @@ const addFields = function (event) {
   console.log(allBlockedDates);
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
     //  block out dates before first entry
-              {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+              {minDate: entryDate,
+                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
     //  block out the dates before first entry
-              {minDate: new Date(newFpEntry),
+              {
+                // minDate: entryDate,
+                // minDate: ,
+
+                // minDate: new Date(newFpEntry),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: allBlockedDates
                     });
