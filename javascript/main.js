@@ -1,3 +1,7 @@
+// block out dates before first entry date
+// calculate dynamically, without submit btn
+// delete btn for additional trips
+//  give last exit date information as soon as time frame and first entry date are entered
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
@@ -182,13 +186,19 @@ const addFields = function (event) {
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+    //  block out dates before first entry
               {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: [
 
+              {
+                  from: entryDate,
+                  to: exitDate
+              },
                       ]
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
-              {minDate: new Date(newEntry),
+    //  block out the dates before first entry
+              {minDate: new Date(newFpEntry),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: [
                         {
