@@ -1,3 +1,7 @@
+// block out dates before first entry date
+// calculate dynamically, without submit btn
+// delete btn for additional trips
+//  give last exit date information as soon as time frame and first entry date are entered
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
@@ -88,9 +92,9 @@ firstEntry.addEventListener('input', function(event){
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
-  console.log(`entrydatenum: ${entryDateNum}`);
+  // console.log(`entrydatenum: ${entryDateNum}`);
   exitDateNum +=1;
-  console.log(`exitydatenum: ${exitDateNum}`);
+  // console.log(`exitydatenum: ${exitDateNum}`);
 
   // creating two new input fields
   let newEntry = document.createElement('input');
@@ -138,20 +142,26 @@ const addFields = function (event) {
     newEntryDate = entries.selectedDates[0];
     console.log(`new entry date = ${newEntryDate}`);
     allBlockedDates.push(newEntryDate);
-    console.log(`all blocked dates entry ${allBlockedDates}`);
+    // console.log(`all blocked dates entry ${allBlockedDates}`);
     let exits = allNewExits[i];
 
     newExitDate = exits.selectedDates[0];
     console.log(`new exit date = ${newExitDate}`);
     allBlockedDates.push(newExitDate);
-    console.log(`all blocked dates entry und exit ${allBlockedDates}`);
+    // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
+    console.log(typeof(allBlockedDates));
+
+
 
     // newDates = blockDates(newEntryDate, newExitDate);
     // allBlockedDates.push(newDates);
     // console.log(allBlockedDates);
     // console.log(typeof(allBlockedDates[2]))
   };
+  console.log(`all blocked dates entry und exit ${allBlockedDates}`);
 
+  console.log(allBlockedDates[0]);
+  console.log(allBlockedDates[1]);
 
 
   for (let i = 0; i < newFieldPairs; i += 3) {
@@ -160,6 +170,7 @@ const addFields = function (event) {
     let blockDate = new Block(entryDt, exitDt);
     console.log(`entryDt: ${entryDt}`);
     console.log(`exitDt: ${exitDt}`);
+    // console.log(`blockdates: ${blockDate}`);
     // console.log(`selected dates print out: ${entryDt.selectedDates}`);
   };
 
@@ -175,20 +186,19 @@ const addFields = function (event) {
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+    //  block out dates before first entry
               {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: [
-                      {
-                        from: entryDate,
-                        to: exitDate
-                      },
-                      {
-                        from: entryDt,
-                        to: exitDt
-                      }
+
+              {
+                  from: entryDate,
+                  to: exitDate
+              },
                       ]
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
-              {minDate: new Date(newEntry),
+    //  block out the dates before first entry
+              {minDate: new Date(newFpEntry),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: [
                         {
