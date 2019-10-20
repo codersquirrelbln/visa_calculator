@@ -73,6 +73,7 @@ firstEntry.addEventListener('input', function(event){
   console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
 
   let fpExit = flatpickr('#exitDate1', {
+    // min new date entry date  fp increment 1??
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
@@ -83,47 +84,68 @@ firstEntry.addEventListener('input', function(event){
     console.log(`this is the exitDate ${exitDate}`);
   })
 });
-// let blockedDates = {
 
 
-// }
-
+const createNewField = (id) => {
+  let newField = document.createElement('input');
+  newField.type = "text";
+  newField.className = "datepicker active flatpickr-input";
+  newField.id = id;
+  // add placeholder!
+  return newField;
+}
 
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
-  // console.log(`entrydatenum: ${entryDateNum}`);
+
   exitDateNum +=1;
-  // console.log(`exitydatenum: ${exitDateNum}`);
 
-  // creating two new input fields
-  let newEntry = document.createElement('input');
-  let newExit = document.createElement('input');
-
-  // identify the parent element after which the new elements should be placed
   let parent = document.querySelector('.parent');
 
-  // give newEntry properties
-  newEntry.type = "text";
- /* not working: newEntry.classList.add = ("datepicker", "flatpickr-input", "active");
- ==> adding CSS class names individually */
-  newEntry.className += "datepicker";
-  newEntry.className += " flatpickr-input";
-  newEntry.className += " active";
-  newEntry.placeholder = "Entry Date..";
-  newEntry.id = `entryDate${entryDateNum}`;
+  parent.appendChild(createNewField(`entryDate${entryDateNum}`));
+  parent.appendChild(createNewField(`exitDate${exitDateNum}`));
 
-  // give newExit properties
-  newExit.type = "text";
-  newExit.className += "datepicker";
-  newExit.className += " flatpickr-input";
-  newExit.className += " active";
-  newExit.placeholder = "Exit Date..";
-  newExit.id = `exitDate${exitDateNum}`;
 
-  // inserting both new elements into the DOM
-  parent.appendChild(newEntry);
-  parent.appendChild(newExit);
+// function createNewTrip() {
+//   // creating two new input fields
+//   let newEntry = document.createElement('input');
+//   let newExit = document.createElement('input');
+
+//   // identify the parent element after which the new elements should be placed
+//   let parent = document.querySelector('.parent');
+
+//   // give newEntry properties
+//   newEntry.type = "text";
+//  /* not working: newEntry.classList.add = ("datepicker", "flatpickr-input", "active");
+//  ==> adding CSS class names individually */
+//   newEntry.className += "datepicker";
+//   newEntry.className += " flatpickr-input";
+//   newEntry.className += " active";
+//   newEntry.placeholder = "Entry Date..";
+//   newEntry.id = `entryDate${entryDateNum}`;
+
+//   // give newExit properties
+//   newExit.type = "text";
+//   newExit.className += "datepicker";
+//   newExit.className += " flatpickr-input";
+//   newExit.className += " active";
+//   newExit.placeholder = "Exit Date..";
+//   newExit.id = `exitDate${exitDateNum}`;
+
+//   // inserting both new elements into the DOM
+//   parent.appendChild(newEntry);
+//   parent.appendChild(newExit);
+
+// }
+
+// const addFields = function (event) {
+//   event.preventDefault();
+//   entryDateNum +=1;
+//   // console.log(`entrydatenum: ${entryDateNum}`);
+//   exitDateNum +=1;
+//   // console.log(`exitydatenum: ${exitDateNum}`);
+//   createNewTrip()
 
 
   // let blockentry = `#entryDate${entryDateNum-1}`;
