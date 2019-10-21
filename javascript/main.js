@@ -1,4 +1,3 @@
-// block out dates before first entry date
 // calculate dynamically, without submit btn
 // delete btn for additional trips
 //  give last exit date information as soon as time frame and first entry date are entered
@@ -59,8 +58,8 @@ function addDays(date, days) {
 
 const numOfTrips = () => {
   return (document.querySelectorAll('.datepicker').length/2);
-  }
-  console.log(numOfTrips()); // gives me already existing 3 with datepickr class
+}
+  // console.log(numOfTrips()); // gives me already existing 3 with datepickr class
 // console.log(`This is the one after fucntion def: ${numOfTrips}`);
 
 let fpEntry = flatpickr('#entryDate1', {});
@@ -80,7 +79,7 @@ firstEntry.addEventListener('input', function(event){
 
   let fpExit = flatpickr('#exitDate1', {
     // min new date entry date  fp increment 1??
-     // minDate: entryDate,
+     minDate: new Date(entryDate),
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
@@ -98,6 +97,11 @@ const createNewField = (id) => {
   newField.type = "text";
   newField.className = "datepicker active flatpickr-input";
   newField.id = id;
+  if (id.includes('entry')) {
+    newField.placeholder = "Entry date";
+  } else {
+    newField.placeholder = "Exit date";
+  }
   // add placeholder!
   return newField;
 }
