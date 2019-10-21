@@ -28,15 +28,32 @@ let newFieldPairs = 0;
 // dates for the days that should get blocked out
 let entryDt;
 let exitDt;
+let parent = document.querySelector('.parent');
+
 
 
 // get the value of timeFrame input, fired when eventlistener gets input
 function setTimeFrame(){
   // timeFrameValue = timeFrame.value // gives me 180
   timeFrameValue = parseInt(timeFrame.value);
+  const newDiv = document.createElement("div");
+  const timeFramePrint = document.createTextNode(timeFrameValue);
+  newDiv.appendChild(timeFramePrint);
+  console.log(timeFramePrint);
   // console.log(`this is the timeFrameValue: ${timeFrameValue} `);
   return timeFrameValue;
+
+
+
+
+  // add the newly created element and its content into the DOM
+  const currentDiv = document.querySelector(".parent");
+  console.log(currentDiv);
+  document.body.insertBefore(newDiv, currentDiv);
 };
+
+
+timeFrame.addEventListener('input', setTimeFrame);
 
 time.flatpickr({
   // allowInput: true,
@@ -111,7 +128,6 @@ const addFields = function (event) {
   entryDateNum +=1;
   exitDateNum +=1;
 
-  let parent = document.querySelector('.parent');
 
   parent.appendChild(createNewField(`entryDate${entryDateNum}`));
   parent.appendChild(createNewField(`exitDate${exitDateNum}`));
@@ -211,8 +227,10 @@ const addFields = function (event) {
 addBtn.addEventListener('click', addFields);
 
 
+firstExit.addEventListener('input', event => {
+
 // start calculations when the submit button is clicked
-submitBtn.addEventListener('click', event => {
+// submitBtn.addEventListener('click', event => {
 // console.log(`This is the one after hitting submit: ${numOfTrips()}`);
 
   // prevents the fields to be 'filled' with invalid input elements
