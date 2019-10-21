@@ -74,7 +74,7 @@ firstEntry.addEventListener('input', function(event){
 
   let fpExit = flatpickr('#exitDate1', {
     // min new date entry date  fp increment 1??
-     minDate: entryDate,
+     // minDate: entryDate,
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
