@@ -73,6 +73,8 @@ firstEntry.addEventListener('input', function(event){
   console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
 
   let fpExit = flatpickr('#exitDate1', {
+    // min new date entry date  fp increment 1??
+     // minDate: entryDate,
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
@@ -83,57 +85,31 @@ firstEntry.addEventListener('input', function(event){
     console.log(`this is the exitDate ${exitDate}`);
   })
 });
-// let blockedDates = {
 
 
-// }
-
+const createNewField = (id) => {
+  let newField = document.createElement('input');
+  newField.type = "text";
+  newField.className = "datepicker active flatpickr-input";
+  newField.id = id;
+  // add placeholder!
+  return newField;
+}
 
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
-  // console.log(`entrydatenum: ${entryDateNum}`);
   exitDateNum +=1;
-  // console.log(`exitydatenum: ${exitDateNum}`);
 
-  // creating two new input fields
-  let newEntry = document.createElement('input');
-  let newExit = document.createElement('input');
-
-  // identify the parent element after which the new elements should be placed
   let parent = document.querySelector('.parent');
 
-  // give newEntry properties
-  newEntry.type = "text";
- /* not working: newEntry.classList.add = ("datepicker", "flatpickr-input", "active");
- ==> adding CSS class names individually */
-  newEntry.className += "datepicker";
-  newEntry.className += " flatpickr-input";
-  newEntry.className += " active";
-  newEntry.placeholder = "Entry Date..";
-  newEntry.id = `entryDate${entryDateNum}`;
+  parent.appendChild(createNewField(`entryDate${entryDateNum}`));
+  parent.appendChild(createNewField(`exitDate${exitDateNum}`));
 
-  // give newExit properties
-  newExit.type = "text";
-  newExit.className += "datepicker";
-  newExit.className += " flatpickr-input";
-  newExit.className += " active";
-  newExit.placeholder = "Exit Date..";
-  newExit.id = `exitDate${exitDateNum}`;
-
-  // inserting both new elements into the DOM
-  parent.appendChild(newEntry);
-  parent.appendChild(newExit);
-
-
-  // let blockentry = `#entryDate${entryDateNum-1}`;
-  //   console.log('this is the blockentry');
-  //   console.log(blockentry);
-  //   let blockexit = `#exitDate${exitDateNum-1}`;
-  //   console.log('this is the blockexit');
-  //   console.log(blockexit);
 
   let allBlockedDates = [];
+  allBlockedDates.push({from: entryDate, to: exitDate});
+
   let newDates;
 
   for (let i = 0; i < newFieldPairs; i ++) {
@@ -141,13 +117,15 @@ const addFields = function (event) {
     // console.log(`entries: ${entries}`);
     newEntryDate = entries.selectedDates[0];
     console.log(`new entry date = ${newEntryDate}`);
-    allBlockedDates.push(newEntryDate);
+    // allBlockedDates.push(newEntryDate);
+    // allBlockedDates.push({from: newEntryDate});
     // console.log(`all blocked dates entry ${allBlockedDates}`);
     let exits = allNewExits[i];
 
     newExitDate = exits.selectedDates[0];
     console.log(`new exit date = ${newExitDate}`);
-    allBlockedDates.push(newExitDate);
+    // allBlockedDates.push(newExitDate);
+    allBlockedDates.push({from: newEntryDate, to: newExitDate});
     // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
     console.log(typeof(allBlockedDates));
 
@@ -160,19 +138,19 @@ const addFields = function (event) {
   };
   console.log(`all blocked dates entry und exit ${allBlockedDates}`);
 
-  console.log(allBlockedDates[0]);
-  console.log(allBlockedDates[1]);
+  // console.log(allBlockedDates[0]);
+  // console.log(allBlockedDates[1]);
 
 
-  for (let i = 0; i < newFieldPairs; i += 3) {
-    entryDt = allBlockedDates[i];
-    exitDt = allBlockedDates[i+1];
-    let blockDate = new Block(entryDt, exitDt);
-    console.log(`entryDt: ${entryDt}`);
-    console.log(`exitDt: ${exitDt}`);
-    // console.log(`blockdates: ${blockDate}`);
-    // console.log(`selected dates print out: ${entryDt.selectedDates}`);
-  };
+  // for (let i = 0; i < newFieldPairs; i += 3) {
+  //   entryDt = allBlockedDates[i];
+  //   exitDt = allBlockedDates[i+1];
+  //   let blockDate = new Block(entryDt, exitDt);
+  //   console.log(`entryDt: ${entryDt}`);
+  //   console.log(`exitDt: ${exitDt}`);
+  //   // console.log(`blockdates: ${blockDate}`);
+  //   // console.log(`selected dates print out: ${entryDt.selectedDates}`);
+  // };
 
   // console.log(allBlockedDates);
 
@@ -185,33 +163,23 @@ const addFields = function (event) {
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
+  console.log(allBlockedDates);
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
     //  block out dates before first entry
-              {maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
-              disable: [
-
-              {
-                  from: entryDate,
-                  to: exitDate
-              },
-                      ]
+              {minDate: entryDate,
+                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+              disable: allBlockedDates
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
     //  block out the dates before first entry
-              {minDate: new Date(newFpEntry),
-                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
-                disable: [
-                        {
-                            from: entryDate,
-                            to: exitDate
-                        },
-                          {
-                        from: entryDt,
-                        to: exitDt
+              {
+                // minDate: entryDate,
+                // minDate: ,
 
-                      }
-                        ]
-              });
+                // minDate: new Date(newFpEntry),
+                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
+                disable: allBlockedDates
+                    });
 
 
 // needs to call function that loops through the dates and place the right to and from pairs together
