@@ -173,17 +173,13 @@ const addFields = function (event) {
   console.log(allBlockedDates);
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
     //  block out dates before first entry
-              {minDate: entryDate,
+              {minDate: new Date(entryDate),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
     //  block out the dates before first entry
-              {
-                // minDate: entryDate,
-                // minDate: ,
-
-                // minDate: new Date(newFpEntry),
+              {minDate: new Date(newFpEntry),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: allBlockedDates
                     });
