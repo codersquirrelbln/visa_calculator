@@ -145,51 +145,68 @@ firstEntry.addEventListener('input', function(event){
   })
 });
 
-
+let classNum = 0;
+console.log(`classnum before new field: ${classNum}`);
 const createNewField = (id) => {
+  classNum += 1;
+console.log(`classnum after new field: ${classNum}`);
+
   let newField = document.createElement('input');
   newField.type = "text";
-  newField.className = "datepicker active flatpickr-input";
+  newField.className = " classNum datepicker active flatpickr-input";
   newField.id = id;
   if (id.includes('entry')) {
     newField.placeholder = "Entry date";
   } else {
     newField.placeholder = "Exit date";
   }
-
-  // createDeleteButton();
   return newField;
 }
 
 const createDeleteButton = () => {
+  classNum += 1;
+console.log(`classnum after del btn: ${classNum}`);
+
   const delBtn = document.createElement("Button");
   const btnText = document.createTextNode('Delete');
   delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
-
+  delBtn.class = 'classNum';
   delBtn.appendChild(btnText);
     // strf
   parent.appendChild(delBtn);
+
+  // console.log(`parent: ${parent}`);
+// delBtn.addEventListener('click', deleteTrip = () => {
+
+// const childElement = document.getElementById(`entryDate${entryDateNum}`);
+// document.getElementById(`entryDate${entryDateNum}`).removeChild(childElement);
+//   if (true) {
+//     console.log('deleting');
+//   }
+// });
 }
+
 
 const deleteTrip = () => {
+  const delEntry = document.getElementById(`entryDate${entryDateNum}`);
+  const delExit = document.getElementById(`exitDate${exitDateNum}`);
+  console.log(delEntry);
+  console.log(delExit);
 
-
+  // if (delBtn.id === newField.id) {
+  //   console.log('deleting');
+  // }
 }
-
-
-
-
-
+deleteTrip();
 
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
   exitDateNum +=1;
 
-
   parent.appendChild(createNewField(`entryDate${entryDateNum}`));
   parent.appendChild(createNewField(`exitDate${exitDateNum}`));
-  createDeleteButton();
+  createDeleteButton(`${exitDateNum}`);
 
 
 
