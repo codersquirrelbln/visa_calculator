@@ -156,9 +156,28 @@ const createNewField = (id) => {
   } else {
     newField.placeholder = "Exit date";
   }
-  // add placeholder!
+
+  // createDeleteButton();
   return newField;
 }
+
+const createDeleteButton = () => {
+  const delBtn = document.createElement("Button");
+  const btnText = document.createTextNode('Delete');
+  delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
+
+  delBtn.appendChild(btnText);
+    // strf
+  parent.appendChild(delBtn);
+}
+
+const deleteTrip = () => {
+
+
+}
+
+
+
 
 
 
@@ -170,6 +189,7 @@ const addFields = function (event) {
 
   parent.appendChild(createNewField(`entryDate${entryDateNum}`));
   parent.appendChild(createNewField(`exitDate${exitDateNum}`));
+  createDeleteButton();
 
 
 
