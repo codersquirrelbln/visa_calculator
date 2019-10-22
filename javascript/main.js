@@ -1,6 +1,16 @@
+
+// html syntax use - exit-date-1
+// change to new arrow func syntax const setTimeFrame = () => {
+
 // calculate dynamically, without submit btn
+
 // delete btn for additional trips
+
 //  give last exit date information as soon as time frame and first entry date are entered
+// using eventlistener, what typoe of event? click or input reacts already just on
+// clicking in field. we want trigger when date is picked. mouseout works, but i want it to
+// trigger, even if mouse is not moved
+
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
@@ -8,6 +18,8 @@ const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
 const firstEntry = document.querySelector('#entryDate1');
 const firstExit = document.querySelector('#exitDate1');
+const targetLocation = document.querySelector('.target-location');
+console.log(targetLocation);
 let lastExit;
 let entryDateNum = 1;
 let exitDateNum = 1;
@@ -33,27 +45,41 @@ let parent = document.querySelector('.parent');
 
 
 // get the value of timeFrame input, fired when eventlistener gets input
-function setTimeFrame(){
+const setTimeFrame = () => {
   // timeFrameValue = timeFrame.value // gives me 180
   timeFrameValue = parseInt(timeFrame.value);
-  const newDiv = document.createElement("div");
-  const timeFramePrint = document.createTextNode(timeFrameValue);
-  newDiv.appendChild(timeFramePrint);
-  console.log(timeFramePrint);
   // console.log(`this is the timeFrameValue: ${timeFrameValue} `);
+  console.log(timeFrameValue);
   return timeFrameValue;
-
-
-
-
-  // add the newly created element and its content into the DOM
-  const currentDiv = document.querySelector(".parent");
-  console.log(currentDiv);
-  document.body.insertBefore(newDiv, currentDiv);
 };
 
+// timeFrame.addEventListener('input', setTimeFrame);
 
-timeFrame.addEventListener('input', setTimeFrame);
+// needs to get triggered when first date is input
+// const timeFrameInfo = () => {
+//   const newDiv = document.createElement("p");
+//   const timeFramePrint = document.createTextNode(lastExitReadable);
+//   newDiv.appendChild(timeFramePrint);
+
+//   // add the newly created element and its content into the DOM
+
+//   // console.log(currentP);
+//   // console.log(timeFramePrint);
+//   document.body.insertBefore(newDiv, target);
+//   const html = `<div>${lastExitReadable}</div>`
+
+//   targetLocation.insertAdjacentHTML('afterend', html)
+// }
+
+// firstEntry.addEventListener('input', timeFrameInfo());
+// firstEntry.addEventListener('input', timeFrameInfo())
+// {
+//   event.preventDefault();
+//   // setTimeFrame();
+//   timeFrameInfo();
+// });
+
+// timeFrame.addEventListener('input', setTimeFrame);
 
 time.flatpickr({
   // allowInput: true,
@@ -87,7 +113,18 @@ firstEntry.addEventListener('input', function(event){
   // console.log(`this is the entryDate: ${entryDate}`);
 
   lastExit = addDays(entryDate, setTimeFrame() );
-  // console.log(`Last exit: ${lastExit}`);
+  console.log(`Last exit: ${lastExit}`);
+  const html = `<div>${lastExit}</div>`;
+  // strf
+
+  targetLocation.insertAdjacentHTML('afterend', html);
+  //////////////////////////
+  // call function to insert paragraph with info last exit date HERE
+
+
+  //////////////////////////
+
+
   // lastExitReadable = lastExit.toDateString();
   // console.log(lastExitReadable);
 
@@ -123,6 +160,8 @@ const createNewField = (id) => {
   return newField;
 }
 
+
+
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
@@ -144,42 +183,17 @@ const addFields = function (event) {
     // console.log(`entries: ${entries}`);
     newEntryDate = entries.selectedDates[0];
     // console.log(`new entry date = ${newEntryDate}`);
-    // allBlockedDates.push(newEntryDate);
-    // allBlockedDates.push({from: newEntryDate});
     // console.log(`all blocked dates entry ${allBlockedDates}`);
     let exits = allNewExits[i];
 
     newExitDate = exits.selectedDates[0];
     // console.log(`new exit date = ${newExitDate}`);
-    // allBlockedDates.push(newExitDate);
     allBlockedDates.push({from: newEntryDate, to: newExitDate});
     // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
     // console.log(typeof(allBlockedDates));
-
-
-
-    // newDates = blockDates(newEntryDate, newExitDate);
-    // allBlockedDates.push(newDates);
-    // console.log(allBlockedDates);
-    // console.log(typeof(allBlockedDates[2]))
   };
+
   console.log(`all blocked dates entry und exit ${allBlockedDates}`);
-
-  // console.log(allBlockedDates[0]);
-  // console.log(allBlockedDates[1]);
-
-
-  // for (let i = 0; i < newFieldPairs; i += 3) {
-  //   entryDt = allBlockedDates[i];
-  //   exitDt = allBlockedDates[i+1];
-  //   let blockDate = new Block(entryDt, exitDt);
-  //   console.log(`entryDt: ${entryDt}`);
-  //   console.log(`exitDt: ${exitDt}`);
-  //   // console.log(`blockdates: ${blockDate}`);
-  //   // console.log(`selected dates print out: ${entryDt.selectedDates}`);
-  // };
-
-  // console.log(allBlockedDates);
 
   // // need to iterate through all complete array
     function Block(entry, exit) {
@@ -210,27 +224,18 @@ const addFields = function (event) {
   // console.log(`all blocked dates after flatpickr: ${allBlockedDates}`);
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
-
-
-  // newFieldPairs = document.querySelector(".parent").childNodes.length;
-  // newFieldPairs = (newFieldPairs-3)/2;
-  // // console.log(newFieldPairs)
-  // console.log('newFpEntry');
-// console.log(`This is the one after new fields: ${numOfTrips}`);
-
 };
 
-/* adding another function that will check how many new entries there are (.include?) and count them, get the number to loop through the days count
-*/
 
 // adding eventListener to the Add Trip button, callbackfunction = addField
 addBtn.addEventListener('click', addFields);
 
 
-firstExit.addEventListener('input', event => {
+
+// firstExit.addEventListener('click', event => {
 
 // start calculations when the submit button is clicked
-// submitBtn.addEventListener('click', event => {
+submitBtn.addEventListener('click', event => {
 // console.log(`This is the one after hitting submit: ${numOfTrips()}`);
 
   // prevents the fields to be 'filled' with invalid input elements
