@@ -1,4 +1,6 @@
 // delete btn for additional trips
+// LINE 129, doe not make min date of exit the entry date...
+
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
@@ -54,7 +56,7 @@ firstEntry.addEventListener('input', function(event){
   entryDate = fpEntry.selectedDates[0];
   lastExit = addDays(entryDate, setTimeFrame());
 
-  const html = `<div>You can pick any date before : ${lastExit.toDateString()}</div>`;
+  const html = `<div>You can pick any date before: ${lastExit.toDateString()}</div>`;
   targetLocation.insertAdjacentHTML('afterend', html);
 
   timeFrameValueCalendar = timeFrameValue;
@@ -107,25 +109,24 @@ const addFields = function (event) {
     // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
   };
 
-  // // need to iterate through all complete array
-  const Block = (entry, exit) => {
-    this.entry = entry;
-    this.exit = exit;
-  }
-
  /* create new fields with entry and exit input fields that will have their
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   // console.log(allBlockedDates);
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
-              //  block out dates before first entry
+              //  Block out dates before first entry
               {minDate: new Date(entryDate),
               maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
             });
+  console.log(`newfpentry: ${newFpEntry}`);
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
-               //  block out the dates before first entry
-              {minDate: new Date(newFpEntry),
+               //  Block out the dates before first entry
+               ///////////////////////////////
+  ///////how can i make the min date the date i picked as entry??///////////
+               ///////////////////////////////
+
+              {minDate: new Date (entryDate),
                maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                disable: allBlockedDates
               });
