@@ -1,7 +1,16 @@
-// block out dates before first entry date
+
+// html syntax use - exit-date-1
+// change to new arrow func syntax const setTimeFrame = () => {
+
 // calculate dynamically, without submit btn
+
 // delete btn for additional trips
+
 //  give last exit date information as soon as time frame and first entry date are entered
+// using eventlistener, what typoe of event? click or input reacts already just on
+// clicking in field. we want trigger when date is picked. mouseout works, but i want it to
+// trigger, even if mouse is not moved
+
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
@@ -9,6 +18,8 @@ const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
 const firstEntry = document.querySelector('#entryDate1');
 const firstExit = document.querySelector('#exitDate1');
+const targetLocation = document.querySelector('.target-location');
+console.log(targetLocation);
 let lastExit;
 let entryDateNum = 1;
 let exitDateNum = 1;
@@ -29,21 +40,52 @@ let newFieldPairs = 0;
 // dates for the days that should get blocked out
 let entryDt;
 let exitDt;
+let parent = document.querySelector('.parent');
+
 
 
 // get the value of timeFrame input, fired when eventlistener gets input
-function setTimeFrame(){
+const setTimeFrame = () => {
   // timeFrameValue = timeFrame.value // gives me 180
   timeFrameValue = parseInt(timeFrame.value);
-  console.log(`this is the timeFrameValue: ${timeFrameValue} `);
+  // console.log(`this is the timeFrameValue: ${timeFrameValue} `);
+  console.log(timeFrameValue);
   return timeFrameValue;
 };
+
+// timeFrame.addEventListener('input', setTimeFrame);
+
+// needs to get triggered when first date is input
+// const timeFrameInfo = () => {
+//   const newDiv = document.createElement("p");
+//   const timeFramePrint = document.createTextNode(lastExitReadable);
+//   newDiv.appendChild(timeFramePrint);
+
+//   // add the newly created element and its content into the DOM
+
+//   // console.log(currentP);
+//   // console.log(timeFramePrint);
+//   document.body.insertBefore(newDiv, target);
+//   const html = `<div>${lastExitReadable}</div>`
+
+//   targetLocation.insertAdjacentHTML('afterend', html)
+// }
+
+// firstEntry.addEventListener('input', timeFrameInfo());
+// firstEntry.addEventListener('input', timeFrameInfo())
+// {
+//   event.preventDefault();
+//   // setTimeFrame();
+//   timeFrameInfo();
+// });
+
+// timeFrame.addEventListener('input', setTimeFrame);
 
 time.flatpickr({
   // allowInput: true,
   // wrap: true,
   // humanfriendly date
-  altInput: true,
+  // altInput: true,
   altFormat: "F j, Y",
   dateFormat: "d.m.Y"
 
@@ -57,24 +99,41 @@ function addDays(date, days) {
   return result;
 }
 
+const numOfTrips = () => {
+  return (document.querySelectorAll('.datepicker').length/2);
+}
+  // console.log(numOfTrips()); // gives me already existing 3 with datepickr class
+// console.log(`This is the one after fucntion def: ${numOfTrips}`);
+
 let fpEntry = flatpickr('#entryDate1', {});
 
 // timeFrame.addEventListener('input', setTimeFrame);
 firstEntry.addEventListener('input', function(event){
   entryDate = fpEntry.selectedDates[0];
-  console.log(`this is the entryDate: ${entryDate}`);
+  // console.log(`this is the entryDate: ${entryDate}`);
 
   lastExit = addDays(entryDate, setTimeFrame() );
   console.log(`Last exit: ${lastExit}`);
+  const html = `<div>${lastExit}</div>`;
+  // strf
+
+  targetLocation.insertAdjacentHTML('afterend', html);
+  //////////////////////////
+  // call function to insert paragraph with info last exit date HERE
+
+
+  //////////////////////////
+
+
   // lastExitReadable = lastExit.toDateString();
   // console.log(lastExitReadable);
 
   timeFrameValueCalendar = timeFrameValue;
-  console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
+  // console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
 
   let fpExit = flatpickr('#exitDate1', {
     // min new date entry date  fp increment 1??
-     // minDate: entryDate,
+     minDate: new Date(entryDate),
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
   });
 
@@ -82,7 +141,7 @@ firstEntry.addEventListener('input', function(event){
   // console.log(firstEntryDay);
   firstExit.addEventListener('input', function(event){
     exitDate = fpExit.selectedDates[0];
-    console.log(`this is the exitDate ${exitDate}`);
+    // console.log(`this is the exitDate ${exitDate}`);
   })
 });
 
@@ -92,67 +151,49 @@ const createNewField = (id) => {
   newField.type = "text";
   newField.className = "datepicker active flatpickr-input";
   newField.id = id;
+  if (id.includes('entry')) {
+    newField.placeholder = "Entry date";
+  } else {
+    newField.placeholder = "Exit date";
+  }
   // add placeholder!
   return newField;
 }
+
+
 
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
   exitDateNum +=1;
 
-  let parent = document.querySelector('.parent');
 
   parent.appendChild(createNewField(`entryDate${entryDateNum}`));
   parent.appendChild(createNewField(`exitDate${exitDateNum}`));
 
 
+
   let allBlockedDates = [];
   allBlockedDates.push({from: entryDate, to: exitDate});
-
-  let newDates;
-
-  for (let i = 0; i < newFieldPairs; i ++) {
+  // console.log(`blcoekd dates first trip: ${allBlockedDates}`);
+  // let newDates;
+ console.log(numOfTrips());
+  for (let i = 0; i < (numOfTrips()-2); i ++) {
     let entries = allNewEntries[i];
     // console.log(`entries: ${entries}`);
     newEntryDate = entries.selectedDates[0];
-    console.log(`new entry date = ${newEntryDate}`);
-    // allBlockedDates.push(newEntryDate);
-    // allBlockedDates.push({from: newEntryDate});
+    // console.log(`new entry date = ${newEntryDate}`);
     // console.log(`all blocked dates entry ${allBlockedDates}`);
     let exits = allNewExits[i];
 
     newExitDate = exits.selectedDates[0];
-    console.log(`new exit date = ${newExitDate}`);
-    // allBlockedDates.push(newExitDate);
+    // console.log(`new exit date = ${newExitDate}`);
     allBlockedDates.push({from: newEntryDate, to: newExitDate});
     // console.log(`all blocked dates entry und exit ${allBlockedDates}`);
-    console.log(typeof(allBlockedDates));
-
-
-
-    // newDates = blockDates(newEntryDate, newExitDate);
-    // allBlockedDates.push(newDates);
-    // console.log(allBlockedDates);
-    // console.log(typeof(allBlockedDates[2]))
+    // console.log(typeof(allBlockedDates));
   };
+
   console.log(`all blocked dates entry und exit ${allBlockedDates}`);
-
-  // console.log(allBlockedDates[0]);
-  // console.log(allBlockedDates[1]);
-
-
-  // for (let i = 0; i < newFieldPairs; i += 3) {
-  //   entryDt = allBlockedDates[i];
-  //   exitDt = allBlockedDates[i+1];
-  //   let blockDate = new Block(entryDt, exitDt);
-  //   console.log(`entryDt: ${entryDt}`);
-  //   console.log(`exitDt: ${exitDt}`);
-  //   // console.log(`blockdates: ${blockDate}`);
-  //   // console.log(`selected dates print out: ${entryDt.selectedDates}`);
-  // };
-
-  // console.log(allBlockedDates);
 
   // // need to iterate through all complete array
     function Block(entry, exit) {
@@ -166,17 +207,13 @@ const addFields = function (event) {
   console.log(allBlockedDates);
   newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
     //  block out dates before first entry
-              {minDate: entryDate,
+              {minDate: new Date(entryDate),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
                     });
   newFpExit = flatpickr(`#exitDate${exitDateNum}`,
     //  block out the dates before first entry
-              {
-                // minDate: entryDate,
-                // minDate: ,
-
-                // minDate: new Date(newFpEntry),
+              {minDate: new Date(newFpEntry),
                 maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
                 disable: allBlockedDates
                     });
@@ -184,31 +221,22 @@ const addFields = function (event) {
 
 // needs to call function that loops through the dates and place the right to and from pairs together
 // needs to loop and open new pair as long as there are pairs
-
+  // console.log(`all blocked dates after flatpickr: ${allBlockedDates}`);
   allNewEntries.push(newFpEntry);
   allNewExits.push(newFpExit);
-  // console.log(allNewEntries);
-  // console.log(allNewExits);
-
-  newFieldPairs = document.querySelector(".parent").childNodes.length;
-  newFieldPairs = (newFieldPairs-3)/2;
-  // console.log(newFieldPairs)
-  // console.log('newFpEntry');
 };
 
-/* adding another function that will check how many new entries there are (.include?) and count them, get the number to loop through the days count
-*/
 
 // adding eventListener to the Add Trip button, callbackfunction = addField
 addBtn.addEventListener('click', addFields);
 
-/* Still todo: when the input date or exit date is after timeframe set, it needs to ignore the days
-could limit the dates you can pick by using first entry + timeframe and cancel out every date after that
-using lastExit as limit on datepickr */
 
+
+// firstExit.addEventListener('click', event => {
 
 // start calculations when the submit button is clicked
 submitBtn.addEventListener('click', event => {
+// console.log(`This is the one after hitting submit: ${numOfTrips()}`);
 
   // prevents the fields to be 'filled' with invalid input elements
   event.preventDefault();
@@ -232,11 +260,11 @@ submitBtn.addEventListener('click', event => {
     let addedDays = 0;
     let allAddedDaysRounded = 0;
 
+  // console.log(numOfTrips());
+    if (numOfTrips() > 1){
+      // console.log('num trips is larger than 1');
 
-    if (document.querySelector('#entryDate2')){
-
-
-      for (let i = 0; i < newFieldPairs; i ++) {
+      for (let i = 0; i < (numOfTrips()-1); i ++) {
         let entries = allNewEntries[i];
         // console.log(`entries: ${entries}`);
         newEntryDate = entries.selectedDates[0];
@@ -262,7 +290,7 @@ submitBtn.addEventListener('click', event => {
       }
     }
 
-  if (!document.querySelector('#entryDate2')){
+  if (numOfTrips() < 1){
     // If there is only one trip, amountAllDays = amountFirstDaysRounded
     amountAllDays = amountFirstDaysRounded;
   }else{
