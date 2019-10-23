@@ -1,6 +1,7 @@
-// delete btn for additional trips
 // LINE 129, doe not make min date of exit the entry date...
-
+// it would be great to have it calculate dynamically. because now if you add another trip you have to
+// hit the submit btn again to get new results and if you delete dates, you also
+// have to hit the submit btn again
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
@@ -98,14 +99,14 @@ const createDeleteButton = (id) => {
   // return delBtn;
   }
 
-
 const deleteTrip = () => {
   const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
   const delEntryId = `entry-date-${entryDateNum}`;
   const delExit = document.getElementById(`exit-date-${exitDateNum}`);
   deleteBtn = document.getElementById(entryDateNum);
 
-
+// main.js:110 Uncaught TypeError: Cannot read property 'remove' of null
+    // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
   if (delEntryId.includes(delBtn.id)) {
     delEntry.remove();
     delExit.remove();
