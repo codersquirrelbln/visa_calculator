@@ -128,7 +128,6 @@ const addFields = function (event) {
 
 
   deleteBtn = document.getElementById(entryDateNum);
-  console.log(deleteBtn);
   deleteBtn.addEventListener('click', deleteTrip);
 
 
@@ -151,14 +150,14 @@ const addFields = function (event) {
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   // console.log(allBlockedDates);
-  newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+  newFpEntry = flatpickr(`#entry-date-${entryDateNum}`,
               //  Block out dates before first entry
               {minDate: new Date(entryDate),
               maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
             });
-  console.log(`newfpentry: ${newFpEntry}`);
-  newFpExit = flatpickr(`#exitDate${exitDateNum}`,
+  // console.log(`newfpentry: ${newFpEntry}`);
+  newFpExit = flatpickr(`#exit-date-${exitDateNum}`,
                //  Block out the dates before first entry
                ///////////////////////////////
   ///////how can i make the min date the date i picked as entry??///////////
