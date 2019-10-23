@@ -1,6 +1,7 @@
-// delete btn for additional trips
 // LINE 129, doe not make min date of exit the entry date...
-
+// it would be great to have it calculate dynamically. because now if you add another trip you have to
+// hit the submit btn again to get new results and if you delete dates, you also
+// have to hit the submit btn again
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
@@ -28,6 +29,8 @@ let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
 let parent = document.querySelector('.parent');
+let delBtn;
+let deleteBtn;
 
 // get the value of timeFrame input, fired when eventlistener gets input
 const setTimeFrame = () => {
@@ -86,13 +89,48 @@ const createNewField = (id) => {
   return newField;
 }
 
+const createDeleteButton = (id) => {
+  delBtn = document.createElement('Button');
+  const btnText = document.createTextNode('Delete');
+  delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
+  delBtn.appendChild(btnText);
+  delBtn.id = id;
+  parent.appendChild(delBtn);
+  // return delBtn;
+  }
+
+const deleteTrip = () => {
+  const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
+  const delEntryId = `entry-date-${entryDateNum}`;
+  const delExit = document.getElementById(`exit-date-${exitDateNum}`);
+  deleteBtn = document.getElementById(entryDateNum);
+
+// main.js:110 Uncaught TypeError: Cannot read property 'remove' of null
+    // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
+  if (delEntryId.includes(delBtn.id)) {
+    delEntry.remove();
+    delExit.remove();
+    deleteBtn.remove();
+  }
+
+}
+// console.log(`this is the del btn: ${createDeleteButton()}`)
+
+
+
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
   exitDateNum +=1;
 
-  parent.appendChild(createNewField(`entryDate${entryDateNum}`));
-  parent.appendChild(createNewField(`exitDate${exitDateNum}`));
+  parent.appendChild(createNewField(`entry-date-${entryDateNum}`));
+  parent.appendChild(createNewField(`exit-date-${exitDateNum}`));
+  createDeleteButton(entryDateNum);
+
+
+  deleteBtn = document.getElementById(entryDateNum);
+  deleteBtn.addEventListener('click', deleteTrip);
+
 
   let allBlockedDates = [];
   allBlockedDates.push({from: entryDate, to: exitDate});
@@ -113,14 +151,14 @@ const addFields = function (event) {
    own id that is incremented by 1 each time you click the button
   apply flatpickr to the new elements */
   // console.log(allBlockedDates);
-  newFpEntry = flatpickr(`#entryDate${entryDateNum}`,
+  newFpEntry = flatpickr(`#entry-date-${entryDateNum}`,
               //  Block out dates before first entry
               {minDate: new Date(entryDate),
               maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar),
               disable: allBlockedDates
             });
-  console.log(`newfpentry: ${newFpEntry}`);
-  newFpExit = flatpickr(`#exitDate${exitDateNum}`,
+  // console.log(`newfpentry: ${newFpEntry}`);
+  newFpExit = flatpickr(`#exit-date-${exitDateNum}`,
                //  Block out the dates before first entry
                ///////////////////////////////
   ///////how can i make the min date the date i picked as entry??///////////
@@ -212,6 +250,8 @@ submitBtn.addEventListener('click', event => {
   const result = document.querySelector('#result');
   result.textContent = text;
 });
+
+
 
 /* Reminder how JS Dates work:
 const firstEntry = `${entryDate.getDate()}. ${entryDate.getMonth()+1}. ${entryDate.getYear()+1900}`;
