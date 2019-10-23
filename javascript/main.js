@@ -16,8 +16,8 @@ const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#timePeriod');
 const maxDays = document.querySelector('#maxDays');
 const submitBtn = document.querySelector('.submit-btn');
-const firstEntry = document.querySelector('#entryDate1');
-const firstExit = document.querySelector('#exitDate1');
+const firstEntry = document.querySelector('#entry-date-1');
+const firstExit = document.querySelector('#exit-date-1');
 const targetLocation = document.querySelector('.target-location');
 console.log(targetLocation);
 let lastExit;
@@ -41,7 +41,7 @@ let newFieldPairs = 0;
 let entryDt;
 let exitDt;
 let parent = document.querySelector('.parent');
-
+let delBtn;
 
 
 // get the value of timeFrame input, fired when eventlistener gets input
@@ -131,7 +131,7 @@ firstEntry.addEventListener('input', function(event){
   timeFrameValueCalendar = timeFrameValue;
   // console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
 
-  let fpExit = flatpickr('#exitDate1', {
+  let fpExit = flatpickr('#exit-date-1', {
     // min new date entry date  fp increment 1??
      minDate: new Date(entryDate),
       maxDate: new Date(entryDate).fp_incr(timeFrameValueCalendar)
@@ -153,7 +153,7 @@ console.log(`classnum after new field: ${classNum}`);
 
   let newField = document.createElement('input');
   newField.type = "text";
-  newField.className = " classNum datepicker active flatpickr-input";
+  newField.className = " class-num datepicker active flatpickr-input";
   newField.id = id;
   if (id.includes('entry')) {
     newField.placeholder = "Entry date";
@@ -163,14 +163,14 @@ console.log(`classnum after new field: ${classNum}`);
   return newField;
 }
 
-const createDeleteButton = () => {
-  classNum += 1;
+const createDeleteButton = (id) => {
 console.log(`classnum after del btn: ${classNum}`);
 
-  const delBtn = document.createElement("Button");
+  delBtn = document.createElement("Button");
   const btnText = document.createTextNode('Delete');
   delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
-  delBtn.class = 'classNum';
+  // delBtn.class = 'classNum';
+  delBtn.id = id
   delBtn.appendChild(btnText);
     // strf
   parent.appendChild(delBtn);
@@ -188,14 +188,14 @@ console.log(`classnum after del btn: ${classNum}`);
 
 
 const deleteTrip = () => {
-  const delEntry = document.getElementById(`entryDate${entryDateNum}`);
-  const delExit = document.getElementById(`exitDate${exitDateNum}`);
+  const delEntry = document.getElementById(`entry-date${entryDateNum}`);
+  const delExit = document.getElementById(`exit-date${exitDateNum}`);
   console.log(delEntry);
   console.log(delExit);
-
-  // if (delBtn.id === newField.id) {
+  // if (createNewField().includes(delBtn)) {
   //   console.log('deleting');
   // }
+
 }
 deleteTrip();
 
