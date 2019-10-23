@@ -29,6 +29,7 @@ let newFpExit;
 let newFieldPairs = 0;
 let parent = document.querySelector('.parent');
 let delBtn;
+let deleteBtn;
 
 // get the value of timeFrame input, fired when eventlistener gets input
 const setTimeFrame = () => {
@@ -94,7 +95,27 @@ const createDeleteButton = (id) => {
   delBtn.appendChild(btnText);
   delBtn.id = id;
   parent.appendChild(delBtn);
+  // return delBtn;
   }
+
+
+const deleteTrip = () => {
+  const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
+  const delEntryId = `entry-date-${entryDateNum}`;
+  const delExit = document.getElementById(`exit-date-${exitDateNum}`);
+  deleteBtn = document.getElementById(entryDateNum);
+
+
+  if (delEntryId.includes(delBtn.id)) {
+    delEntry.remove();
+    delExit.remove();
+    deleteBtn.remove();
+  }
+
+}
+// console.log(`this is the del btn: ${createDeleteButton()}`)
+
+
 
 const addFields = function (event) {
   event.preventDefault();
@@ -104,6 +125,12 @@ const addFields = function (event) {
   parent.appendChild(createNewField(`entry-date-${entryDateNum}`));
   parent.appendChild(createNewField(`exit-date-${exitDateNum}`));
   createDeleteButton(entryDateNum);
+
+
+  deleteBtn = document.getElementById(entryDateNum);
+  console.log(deleteBtn);
+  deleteBtn.addEventListener('click', deleteTrip);
+
 
   let allBlockedDates = [];
   allBlockedDates.push({from: entryDate, to: exitDate});
@@ -223,6 +250,8 @@ submitBtn.addEventListener('click', event => {
   const result = document.querySelector('#result');
   result.textContent = text;
 });
+
+
 
 /* Reminder how JS Dates work:
 const firstEntry = `${entryDate.getDate()}. ${entryDate.getMonth()+1}. ${entryDate.getYear()+1900}`;
