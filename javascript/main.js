@@ -28,6 +28,7 @@ let newFpEntry;
 let newFpExit;
 let newFieldPairs = 0;
 let parent = document.querySelector('.parent');
+let delBtn;
 
 // get the value of timeFrame input, fired when eventlistener gets input
 const setTimeFrame = () => {
@@ -86,13 +87,23 @@ const createNewField = (id) => {
   return newField;
 }
 
+const createDeleteButton = (id) => {
+  delBtn = document.createElement('Button');
+  const btnText = document.createTextNode('Delete');
+  delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
+  delBtn.appendChild(btnText);
+  delBtn.id = id;
+  parent.appendChild(delBtn);
+  }
+
 const addFields = function (event) {
   event.preventDefault();
   entryDateNum +=1;
   exitDateNum +=1;
 
-  parent.appendChild(createNewField(`entryDate${entryDateNum}`));
-  parent.appendChild(createNewField(`exitDate${exitDateNum}`));
+  parent.appendChild(createNewField(`entry-date-${entryDateNum}`));
+  parent.appendChild(createNewField(`exit-date-${exitDateNum}`));
+  createDeleteButton(entryDateNum);
 
   let allBlockedDates = [];
   allBlockedDates.push({from: entryDate, to: exitDate});
