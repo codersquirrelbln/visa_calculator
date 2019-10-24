@@ -7,7 +7,7 @@ const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
 const timeFrame = document.querySelector('#time-period');
 const maxDays = document.querySelector('#max-days');
-const submitBtn = document.querySelector('.submit-btn');
+const submitBtn = document.querySelector('#submit-btn');
 const firstEntry = document.querySelector('#entry-date-1');
 const firstExit = document.querySelector('#exit-date-1');
 const targetLocation = document.querySelector('.target-location');
@@ -99,22 +99,36 @@ const createDeleteButton = (id) => {
   // return delBtn;
   }
 
+console.log(`before delete trip func: ${entryDateNum}`);
 const deleteTrip = () => {
+  console.log('first line delete trip func');
+  console.log(entryDateNum);
+  // this stays the highest number, and hence it finds no property a few lines down(see error message)
+
   const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
+  console.log(delEntry);
   const delEntryId = `entry-date-${entryDateNum}`;
+  console.log(delEntryId);
+
   const delExit = document.getElementById(`exit-date-${exitDateNum}`);
+  console.log(delExit);
+
   deleteBtn = document.getElementById(entryDateNum);
+  console.log(deleteBtn);
 
 // main.js:110 Uncaught TypeError: Cannot read property 'remove' of null
     // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
   if (delEntryId.includes(delBtn.id)) {
+    console.log('inside if statement');
+
     delEntry.remove();
     delExit.remove();
     deleteBtn.remove();
+    console.log('last line if statement');
   }
 
 }
-// console.log(`this is the del btn: ${createDeleteButton()}`)
+console.log(`this is the del btn: ${createDeleteButton()}`)
 
 
 
@@ -128,8 +142,8 @@ const addFields = function (event) {
   createDeleteButton(entryDateNum);
 
 
-  deleteBtn = document.getElementById(entryDateNum);
-  deleteBtn.addEventListener('click', deleteTrip);
+  // deleteBtn = document.getElementById(entryDateNum);
+  // deleteBtn.addEventListener('click', deleteTrip);
 
 
   let allBlockedDates = [];
