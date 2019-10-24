@@ -11,6 +11,17 @@ body {
   padding: .8em 16.2em;
 }
 
+hr.line {
+  height: 1.5px;
+  border: 0;
+  color: #333;
+  background-color: #333;
+  width:50%;
+  text-align: center;
+  position: relative;
+  bottom: 10px;
+}
+
 .time-frame-container {
   display: flex;
   align-items: center;
