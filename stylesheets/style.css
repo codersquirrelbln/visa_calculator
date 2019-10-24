@@ -8,8 +8,33 @@ body {
 
 .container {
   text-align: center;
-  padding: .8em 7.2em;
+  padding: .8em 16.2em;
 }
+
+.time-frame-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.block-1 {
+  flex-basis: 50%;
+}
+
+.block-1 p {
+  margin-bottom: 33px;
+  text-align: center;
+}
+
+.block-2 {
+  flex-basis: 50%;
+}
+
+.block-2 p {
+  text-align: center;
+
+}
+
 
 img {
   width: 50px;
