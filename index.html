@@ -14,7 +14,7 @@
 
 <body>
   <div class="container">
-    <h1>Welcome to my Visa Calculator</h1> 
+    <h1>Welcome to my Visa Calculator</h1>
       <i class="fas fa-globe-africa"></i>
         <p>
         Please note, that this is a simple date calculator and not in any way
@@ -25,6 +25,7 @@
   </div>
 
   <div class="container">
+
     <div class = "time-frame-container">
       <div class = "block-1">
       <p>Please enter the time frame that countries give (for example 180 days in
@@ -36,22 +37,23 @@
       <input id="maxDays" type="text" placeholder="Insert Maximum days of stay allowed" name="max_days" data-input>
       </div>
     </div>
+
   </div>
 
   <div class="container" >
     <h2>Your Stay</h2>
-    <p>Please enter your planned entry and exit dates</p>
-      <input class="datepicker" id="entryDate1" type="text" placeholder="Entry Date...">
+    <p class="target-location">Please enter your planned entry and exit dates</p>
+      <input class="datepicker" id="entry-date-1" type="text" placeholder="Entry Date...">
         <div class='parent'>
-          <input class="datepicker" id="exitDate1" type="text" placeholder="Exit date..." data-input>
+          <input class="datepicker" id="exit-date-1" type="text" placeholder="Exit date..." data-input>
         </div>
         <button class="add-btn btn btn-primary">+ Add another stay</button>
-        <div id="submit" class="outputParent">
+        <div id="submit" class="output-parent">
           <button class="submit-btn btn btn-primary" id="submitBtn">Submit</button>
         </div>
         <div id="result"></div>
   </div>
-    
+
 
     <!-- scripts -->
     <!-- external js files -->
