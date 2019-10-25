@@ -1,10 +1,15 @@
 body {
   text-align: center;
   margin: 0;
-  background: cornflowerblue;
+  background: #E1DDD2;
   font-family: 'Montserrat', sans-serif;
 }
 
+
+.landing-container {
+  flex: display;
+  flex-direction: column;
+}
 
 .container {
   text-align: center;
@@ -58,7 +63,7 @@ img {
 }
 
 input {
-  border: 2px solid whitesmoke;
+  border: 2px solid #ddd1d1;
   border-radius: 20px;
   padding: 12px 10px;
   text-align: center;
