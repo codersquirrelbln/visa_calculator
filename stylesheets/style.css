@@ -110,6 +110,10 @@ button {
   display: block;
   }
 
+  .button: {
+    width: 90%;
+  }
+
 }
 
 
