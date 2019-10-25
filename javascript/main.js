@@ -120,15 +120,15 @@ const deleteTrip = () => {
     // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
   if (delEntryId.includes(delBtn.id)) {
     console.log('inside if statement');
-
-    delEntry.remove();
-    delExit.remove();
-    deleteBtn.remove();
-    console.log('last line if statement');
+    parent.removeChild(parent.childNode[0]);
+    // delEntry.remove();
+    // delExit.remove();
+    // deleteBtn.remove();
+    // console.log('last line if statement');
   }
 
 }
-console.log(`this is the del btn: ${createDeleteButton()}`)
+// console.log(`this is the del btn: ${createDeleteButton()}`)
 
 
 
@@ -142,8 +142,8 @@ const addFields = function (event) {
   createDeleteButton(entryDateNum);
 
 
-  // deleteBtn = document.getElementById(entryDateNum);
-  // deleteBtn.addEventListener('click', deleteTrip);
+  deleteBtn = document.getElementById(entryDateNum);
+  deleteBtn.addEventListener('click', deleteTrip);
 
 
   let allBlockedDates = [];
