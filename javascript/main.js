@@ -1,7 +1,5 @@
 // LINE 129, doe not make min date of exit the entry date...
-// it would be great to have it calculate dynamically. because now if you add another trip you have to
-// hit the submit btn again to get new results and if you delete dates, you also
-// have to hit the submit btn again
+
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
@@ -31,6 +29,7 @@ let newFieldPairs = 0;
 let parent = document.querySelector('.parent');
 let delBtn;
 let deleteBtn;
+
 
 // get the value of timeFrame input, fired when eventlistener gets input
 const setTimeFrame = () => {
