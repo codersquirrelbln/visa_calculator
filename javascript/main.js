@@ -123,7 +123,7 @@ const deleteTrip = () => {
   }
 
 }
-// console.log(`this is the del btn: ${createDeleteButton()}`)
+
 
 
 
