@@ -106,25 +106,21 @@ const deleteTrip = () => {
   // this stays the highest number, and hence it finds no property a few lines down(see error message)
 
   const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
-  console.log(delEntry);
-  const delEntryId = `entry-date-${entryDateNum}`;
-  console.log(delEntryId);
-
   const delExit = document.getElementById(`exit-date-${exitDateNum}`);
-  console.log(delExit);
-
+  const delEntryId = `entry-date-${entryDateNum}`;
   deleteBtn = document.getElementById(entryDateNum);
-  console.log(deleteBtn);
 
-// main.js:110 Uncaught TypeError: Cannot read property 'remove' of null
-    // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
+  //   const myNode = document.getElementById("foo");
+  // while (.firstChild || delEntryId.firstChild) {
+  //   myNode.removeChild(myNode.firstChild);
+  // }
+
   if (delEntryId.includes(delBtn.id)) {
-    console.log('inside if statement');
-    parent.removeChild(parent.childNode[0]);
-    // delEntry.remove();
-    // delExit.remove();
-    // deleteBtn.remove();
-    // console.log('last line if statement');
+    // while () {
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+    // }
   }
 
 }
