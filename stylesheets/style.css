@@ -6,9 +6,9 @@ body {
 }
 
 
-.landing-container {
-  flex: display;
-  flex-direction: column;
+.container-landing {
+  display: flex;
+  justify-content: space-around;
 }
 
 .container {
