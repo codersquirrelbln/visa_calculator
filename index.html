@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -25,26 +25,24 @@
 
   <div class = container-landing>
 
-  <div container-img><img src="stylesheets/images/visa-calculator-img.png" alt="passport" style="width:650px">
+  <div class ="container-image"><img src="stylesheets/images/visa-calculator-img.png" alt="passport" style="width:550px">
   </div>
     
-    <div class="container">
-          
-
-    <div class = "block-1">
+  <div class="container">
+    <h2>Time frame</h2>
+    <div class = "time-frame-container">
+      <div class = "block-1">
       <p> Please enter the time frame that countries give (for example 180 days in
       the Schengen Zone)
       </p>
       <input id="timePeriod" type="text" placeholder="Insert Time Frame" name="time_period" data-input>
-      <div class = "block-2">
-        <p>Please enter the maximum amount of days you are allowed to stay within the time frame put above (for example 90 days in the Schengen Zone)</p>
-        <input id="maxDays" type="text" placeholder="Insert Maximum days of stay allowed" name="max_days" data-input>
       </div>
-    
-    
+      <div class = "block-2">
+      <p>Please enter the maximum amount of days you are allowed to stay within the time frame put above (for example 90 days in the Schengen Zone)</p>
+      <input id="maxDays" type="text" placeholder="Insert Maximum days of stay allowed" name="max_days" data-input>
+      </div>
+    </div>
 
-    
-    
     <div class="your-stay-container">
       <h2>Your Stay</h2>
         <p class="target-location">Please enter your planned entry and exit dates</p>
