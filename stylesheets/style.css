@@ -1,10 +1,15 @@
 body {
   text-align: center;
   margin: 0;
-  background: cornflowerblue;
+  background: #E1DDD2;
   font-family: 'Montserrat', sans-serif;
 }
 
+
+.landing-container {
+  flex: display;
+  flex-direction: column;
+}
 
 .container {
   text-align: center;
@@ -58,7 +63,7 @@ img {
 }
 
 input {
-  border: 2px solid whitesmoke;
+  border: 2px solid #ddd1d1;
   border-radius: 20px;
   padding: 12px 10px;
   text-align: center;
@@ -88,24 +93,30 @@ button {
   }
 
   .container {
-    width : 90%;
-    padding: .8em 0.2em;
+    width : 95%;
+    padding: .8em;
   }
 
-  .dates-field {
+}
+
+@media screen and (max-width: 870px) {
+
+.container {
+    width : 95%;
+    padding: .8em;
+    margin: 0px;
+  }
+
+ .dates-field {
   display: block;
   }
 
   .time-frame-container {
   display: block;
   }
-}
 
-@media screen and (max-width: 870px) {
-
-.container {
-    width : 90%;
-    padding: .8em 0.2em;
+  .button: {
+    width: 90%;
   }
 
 }
