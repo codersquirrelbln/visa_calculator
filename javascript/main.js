@@ -115,10 +115,10 @@ const deleteTrip = () => {
 
   if (delEntryId.includes(delBtn.id)) {
     // while () {
-      parent.removeChild(parent.childNodes);
-    //   parent.removeChild(parent.lastChild);
-    //   parent.removeChild(parent.lastChild);
-    // // }
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+    // }
   }
 
 }
