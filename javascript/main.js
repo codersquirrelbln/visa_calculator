@@ -53,7 +53,6 @@ const numOfTrips = () => {
 }
 
 let fpEntry = flatpickr('#entry-date-1', {});
-
 firstEntry.addEventListener('input', function(event){
   entryDate = fpEntry.selectedDates[0];
   lastExit = addDays(entryDate, setTimeFrame());
@@ -116,10 +115,10 @@ const deleteTrip = () => {
 
   if (delEntryId.includes(delBtn.id)) {
     // while () {
-      parent.removeChild(parent.lastChild);
-      parent.removeChild(parent.lastChild);
-      parent.removeChild(parent.lastChild);
-    // }
+      parent.removeChild(parent.childNodes);
+    //   parent.removeChild(parent.lastChild);
+    //   parent.removeChild(parent.lastChild);
+    // // }
   }
 
 }
