@@ -3,17 +3,28 @@ body {
   margin: 0;
   background: #E1DDD2;
   font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
+.header-page {
+  margin: 0px, 30px;
+}
+
+h1 {
+  padding-top: 10px;
+  font-sixe: 26px;
+}
 
 .container-landing {
   display: flex;
-  justify-content: space-around;
+  padding: 10px;
 }
 
 .container {
   text-align: center;
-  padding: .8em 16.2em;
+  padding: .8em 1.2em;
+  display: flex;
+  flex-direction: column;
 }
 
 hr.line {
