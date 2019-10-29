@@ -111,16 +111,13 @@ input {
 .add-btn-button{
   background: #ff6666;
   width: 170px;
-  
   color: #fff;
   border-radius: 50px;
   padding: 13px;
   text-decoration: none;
   font-size: 17px;
   font-weight: bold;
-  margin: 3% auto 3%;
   position: relative;
-  box-shadow: 1px, 1px, 20px, black;
 }
 
 button {
@@ -133,7 +130,6 @@ button {
   font-size: 17px;
   font-weight: bold;
   position: relative;
-  box-shadow: 1px, 1px, 20px, black;
 }
 
 @media screen and (max-width: 1170px) {
