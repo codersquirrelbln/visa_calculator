@@ -1,7 +1,5 @@
 // LINE 129, doe not make min date of exit the entry date...
-// it would be great to have it calculate dynamically. because now if you add another trip you have to
-// hit the submit btn again to get new results and if you delete dates, you also
-// have to hit the submit btn again
+
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
@@ -32,6 +30,7 @@ let parent = document.querySelector('.parent');
 let delBtn;
 let deleteBtn;
 
+
 // get the value of timeFrame input, fired when eventlistener gets input
 const setTimeFrame = () => {
   timeFrameValue = parseInt(timeFrame.value);
@@ -54,7 +53,6 @@ const numOfTrips = () => {
 }
 
 let fpEntry = flatpickr('#entry-date-1', {});
-
 firstEntry.addEventListener('input', function(event){
   entryDate = fpEntry.selectedDates[0];
   lastExit = addDays(entryDate, setTimeFrame());
@@ -106,29 +104,25 @@ const deleteTrip = () => {
   // this stays the highest number, and hence it finds no property a few lines down(see error message)
 
   const delEntry = document.getElementById(`entry-date-${entryDateNum}`);
-  console.log(delEntry);
-  const delEntryId = `entry-date-${entryDateNum}`;
-  console.log(delEntryId);
-
   const delExit = document.getElementById(`exit-date-${exitDateNum}`);
-  console.log(delExit);
-
+  const delEntryId = `entry-date-${entryDateNum}`;
   deleteBtn = document.getElementById(entryDateNum);
-  console.log(deleteBtn);
 
-// main.js:110 Uncaught TypeError: Cannot read property 'remove' of null
-    // at HTMLButtonElement.deleteTrip (main.js:110) when deleting second additonal trip?!
+  //   const myNode = document.getElementById("foo");
+  // while (.firstChild || delEntryId.firstChild) {
+  //   myNode.removeChild(myNode.firstChild);
+  // }
+
   if (delEntryId.includes(delBtn.id)) {
-    console.log('inside if statement');
-    parent.removeChild(parent.childNode[0]);
-    // delEntry.remove();
-    // delExit.remove();
-    // deleteBtn.remove();
-    // console.log('last line if statement');
+    // while () {
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+      parent.removeChild(parent.lastChild);
+    // }
   }
 
 }
-// console.log(`this is the del btn: ${createDeleteButton()}`)
+
 
 
 

@@ -9,57 +9,56 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container">
+
+  <div class = "header-page">
     <h1>Welcome to my Visa Calculator</h1>
-      <i class="fas fa-globe-africa"></i>
-        <p>
-        Please note, that this is a simple date calculator and not in any way
+    <p> Please note, that this is a simple date calculator and not in any way
         responsible for wrong data input by users, nor does it claim to be a
         guarantee for the user's stay in any country. This site is not responsible
         for your trip or if your entry into a country is denied.
-        </p>
+     </p>
   </div>
 
+  <div class = container-landing>
+
+  <div class ="container-image"><img src="stylesheets/images/visa-calculator-img.png" alt="passport" style="width:550px">
+  </div>
+    
   <div class="container">
-
-    <hr class = "line"></hr>
-      <div class = "time-frame-container">
-        <div class = "block-1">
-        <p>Please enter the time frame that countries give (for example 180 days in
-        the Schengen Zone)</p>
-        <input id="time-period" type="text" placeholder="Insert Time Frame" name="time_period" data-input>
-        </div>
-        <div class = "block-2">
-        <p>Please enter the maximum amount of days you are allowed to stay within the time frame put above (for example 90 days in the Schengen Zone)</p>
-        <input id="max-days" type="text" placeholder="Insert Maximum days of stay allowed" name="max_days" data-input>
-        </div>
-
+    <h2>Time frame</h2>
+    <div class = "time-frame-container">
+      <div class = "block-1">
+      <p> Please enter the time frame that countries give (for example 180 days in
+      the Schengen Zone)
+      </p>
+      <input id="timePeriod" type="text" placeholder="Insert Time Frame" name="time_period" data-input>
       </div>
-  </div>
-
-  <div class="container" >
-
-    <hr class = "line"></hr>
-    <div class="your-stay-container">
-      <h2>Your Stay</h2>
-      <p class="target-location">Please enter your planned entry and exit dates</p>
-      <div class="dates-field">
-        <input class="datepicker" id="entry-date-1" type="text" placeholder="Entry date...">
-          <div class='parent'>
-            <input class="datepicker" id="exit-date-1" type="text" placeholder="Exit date..." data-input>
-          </div>
+      <div class = "block-2">
+      <p>Please enter the maximum amount of days you are allowed to stay within the time frame put above (for example 90 days in the Schengen Zone)</p>
+      <input id="maxDays" type="text" placeholder="Insert Maximum days of stay allowed" name="max_days" data-input>
       </div>
-          <button class="add-btn button">Add another stay</button>
-          <div id="submit" class="output-parent">
-            <button class="submit-btn button" id="submit-btn">Submit</button>
-          </div>
-          <div id="result"></div>
     </div>
 
+    <div class="your-stay-container">
+      <h2>Your Stay</h2>
+        <p class="target-location">Please enter your planned entry and exit dates</p>
+        <div class="dates-field">
+          <div class='parent'>
+            <input class="datepicker" id="entry-date-1" type="text" placeholder="Entry date...">
+            <input class="datepicker" id="exit-date-1" type="text" placeholder="Exit date..." data-input>
+          </div>
+        </div>
+            <button class="add-btn button">Add another stay</button>
+            <div id="submit" class="output-parent">
+              <button class="submit-btn button" id="submitBtn">Submit</button>
+            </div>
+            <div id="result"></div>
+    </div>
+    </div>
   </div>
 
 

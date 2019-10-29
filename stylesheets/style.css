@@ -1,14 +1,43 @@
 body {
   text-align: center;
   margin: 0;
-  background: cornflowerblue;
+  background: white;
   font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
 }
 
+.header-page {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.header-page p {
+  font-style: italic;
+  font-size: 10px;
+}
+
+h1 {
+  padding-top: 10px;
+  font-sixe: 26px;
+}
+
+.container-landing {
+  display: flex;
+  padding: 10px;
+}
+
+.container-image {
+  position: relative;
+  right: 22px;
+  bottom: 5px;
+}
 
 .container {
   text-align: center;
-  padding: .8em 16.2em;
+  padding: .8em 1.2em;
+  display: flex;
+  flex-direction: column;
+  padding-right: 15px;
 }
 
 hr.line {
@@ -43,12 +72,18 @@ hr.line {
 
 .block-2 p {
   text-align: center;
+  padding-bottom: 2px
+
+}
+
+.time-frame-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 .dates-field {
   display: flex;
   justify-content: space-around;
-  height: 100%;
   margin-bottom : 2em;
 }
 
@@ -58,7 +93,7 @@ img {
 }
 
 input {
-  border: 2px solid whitesmoke;
+  border: 2px solid #ddd1d1;
   border-radius: 20px;
   padding: 12px 10px;
   text-align: center;
@@ -78,10 +113,43 @@ button {
   font-weight: bold;
   margin: 3% auto 7%;
   position: relative;
-  box-shadow: 1px, 1px, 8px, black;
+  box-shadow: 1px, 1px, 20px, black;
 }
 
+@media screen and (max-width: 1170px) {
 
+  .body {
+    display: block
+  }
+
+  .container {
+    width : 95%;
+    padding: .8em;
+  }
+
+}
+
+@media screen and (max-width: 870px) {
+
+.container {
+    width : 95%;
+    padding: .8em;
+    margin: 0px;
+  }
+
+ .dates-field {
+  display: block;
+  }
+
+  .time-frame-container {
+  display: block;
+  }
+
+  .button: {
+    width: 90%;
+  }
+
+}
 
 
 
