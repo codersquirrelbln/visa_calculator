@@ -148,23 +148,69 @@ button {
 
 @media screen and (max-width: 870px) {
 
-.container {
+  .body {
+      display: block
+    }
+
+  .header-page {
+
     width : 95%;
     padding: .8em;
     margin: 0px;
+
   }
 
- .dates-field {
-  display: block;
+  .container-landing {
+    display: block;
   }
+
+  .container-image {
+      width : 90%;
+      margin: 5px;
+    }
+
+  .btn-container {
+    display: block;
+  }
+
+  .container {
+      width : 95%;
+      padding: .8em;
+      margin: 0px;
+    }
+
+  img {
+    max-width: 100%;
+    margin-left: 40px;
+  }
+
+  .dates-field {
+    display: block;
+    padding: 2%;
+    }
 
   .time-frame-container {
-  display: block;
+    display: block;
+    }
+
+  #entry-date-1 {
+    margin-bottom: 10px;
   }
 
   .button: {
-    width: 90%;
+      width: 90%;
+    }
+
+  .add-btn-button {
+    margin-left: 0px;
+    position: relative;
+    right: 0px;
   }
+
+  #submitBtn {
+    margin-left: 0px;
+
+}
 
 }
 
