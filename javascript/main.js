@@ -1,5 +1,5 @@
 // LINE 129, doe not make min date of exit the entry date...
-
+// nee to create error message when no values are input
 
 const time = document.querySelector('.datepicker');
 const addBtn = document.querySelector('.add-btn');
