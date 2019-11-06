@@ -49,10 +49,10 @@ const addDays = (date, days) => {
 }
 
 const checkTimeRegulations = () => {
-  if (!timeFrame.value || !maxDays.value) {
-    if (!timeFrame.value) {
+  if (!timeFrame.value || !maxDays.value||isNaN(timeFrame.value)|| isNaN(maxDays.value)) {
+    if (!timeFrame.value || isNaN(timeFrame.value)) {
       alert('Please enter a valid number as time frame')
-    } else if (!maxDays.value) {
+    } else if (!maxDays.value || isNaN(maxDays.value)) {
       alert('Please enter a valid number as maximum days')
     }
   } else {
