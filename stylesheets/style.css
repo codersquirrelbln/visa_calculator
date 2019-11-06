@@ -108,7 +108,7 @@ input {
   justify-content: center;
 }
 
-.add-btn-button{
+.add-btn {
   background: #ff6666;
   width: 170px;
   color: #fff;
@@ -201,13 +201,13 @@ button {
       width: 90%;
     }
 
-  .add-btn-button {
+  .add-btn {
     margin-left: 0px;
     position: relative;
     right: 0px;
   }
 
-  #submitBtn {
+  #submit-btn {
     margin-left: 0px;
 
 }
