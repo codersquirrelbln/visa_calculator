@@ -48,6 +48,19 @@ const addDays = (date, days) => {
   return result;
 }
 
+const checkTimeRegulations = () => {
+  if (!timeFrame.value || !maxDays.value) {
+    if (!timeFrame.value) {
+      alert('Please enter a valid number as time frame')
+    } else if (!maxDays.value) {
+      alert('Please enter a valid number as maximum days')
+    }
+  } else {
+    const html = `<div>You can pick any date before: ${lastExit.toDateString()}</div>`;
+    targetLocation.insertAdjacentHTML('afterend', html);
+  }
+}
+
 const numOfTrips = () => {
   return (document.querySelectorAll('.datepicker').length/2);
 }
@@ -57,8 +70,7 @@ firstEntry.addEventListener('input', function(event){
   entryDate = fpEntry.selectedDates[0];
   lastExit = addDays(entryDate, setTimeFrame());
 
-  const html = `<div>You can pick any date before: ${lastExit.toDateString()}</div>`;
-  targetLocation.insertAdjacentHTML('afterend', html);
+  checkTimeRegulations();
 
   timeFrameValueCalendar = timeFrameValue;
   // console.log(`this is the timeFrameValueCalendar ${timeFrameValueCalendar}`);
