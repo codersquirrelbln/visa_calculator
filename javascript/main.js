@@ -268,6 +268,7 @@ submitBtn.addEventListener('click', event => {
 
   /* Creating new DOM-elements to display the output
   identify parent element after which insert the results */
+
   const result = document.querySelector('#result');
   result.textContent = text;
 });
