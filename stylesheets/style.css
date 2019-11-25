@@ -38,6 +38,8 @@ h1 {
   display: flex;
   flex-direction: column;
   padding-right: 15px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 hr.line {
@@ -144,6 +146,10 @@ button {
     padding: .8em;
   }
 
+}
+
+.results {
+  margin-top: 20px;
 }
 
 @media screen and (max-width: 870px) {
