@@ -269,8 +269,14 @@ submitBtn.addEventListener('click', event => {
   /* Creating new DOM-elements to display the output
   identify parent element after which insert the results */
 
+  let h = document.createElement("H2")                // Create a <h1> element
+  let t = document.createTextNode("Results");
+  h.appendChild(t);
+  results.appendChild(h);    // Create a text node
+
   const result = document.querySelector('#result');
   result.textContent = text;
+
 });
 
 
