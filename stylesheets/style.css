@@ -97,6 +97,7 @@ hr.line {
   justify-content: space-around;
   margin-bottom : 2em;
   margin-top: 18px;
+  margin-right: 10px;
 }
 
 img {
@@ -113,7 +114,7 @@ input {
   width: 230px;
   font-style: italic;
   margin-bottom: 10px;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 
@@ -128,7 +129,7 @@ input {
   background: #ff6666;
   width: 170px;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 13px;
   text-decoration: none;
   font-size: 17px;
@@ -141,13 +142,18 @@ button {
   background: #00CC80;
   width: 230px;
   color: #fff;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 13px;
   text-decoration: none;
   font-size: 17px;
   font-weight: bold;
   margin-left: 45px;
   margin-bottom: 18px;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 70%;
 }
 
 .del {
@@ -157,6 +163,7 @@ button {
   position: absolute;
   padding: 5px;
 }
+
 
 @media screen and (max-width: 1170px) {
 
