@@ -102,6 +102,7 @@ const createNewField = (id) => {
 const createDeleteButton = (id) => {
   delBtn = document.createElement('Button');
   const btnText = document.createTextNode('Delete');
+  delBtn.setAttribute("class", "del");
   delBtn.setAttribute("style", "border: none, border-radius: 10px, padding: 12px 10px, text-align: center, cursor: pointer, background: coral, color: whitesmoke");
   delBtn.appendChild(btnText);
   delBtn.id = id;
