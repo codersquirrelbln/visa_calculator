@@ -127,7 +127,7 @@ input {
 
 .add-btn {
   background: #ff6666;
-  width: 170px;
+  width: auto;
   color: #fff;
   border-radius: 10px;
   padding: 13px;
@@ -135,7 +135,7 @@ input {
   font-size: 17px;
   font-weight: bold;
   position: relative;
-  right: 15px;
+
 }
 
 button {
