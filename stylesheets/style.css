@@ -3,7 +3,7 @@ body {
   margin: 0;
   background: white;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 1em;
   padding: 90px;
 }
 
@@ -152,7 +152,10 @@ button {
 
 .del {
   width: auto;
-  margin: 5px auto 20px auto,
+  margin: 5px auto 20px auto;
+  background-color: lightgrey;
+  position: absolute;
+  padding: 5px;
 }
 
 @media screen and (max-width: 1170px) {
